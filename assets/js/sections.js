@@ -44,6 +44,7 @@
     button.type = "button";
     button.dataset.sectionToggle = "";
     button.setAttribute("aria-controls", content.id);
+    button.setAttribute("aria-keyshortcuts", "Escape");
     button.append(...Array.from(heading.childNodes));
     const indicator = document.createElement("span");
     indicator.className = "section-toggle__indicator";
@@ -65,6 +66,34 @@
   });
 
   if (!sections.size) return;
+
+  // Collapse only the disclosure that owns keyboard focus, from the inside
+  // out. A held Escape must not close a topic and then its whole section.
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape" || event.defaultPrevented || event.repeat ||
+        event.isComposing || event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) return;
+    const focused = document.activeElement;
+    if (!focused || event.target !== focused ||
+        event.target.closest?.("dialog") || focused.isContentEditable ||
+        focused.closest?.("input, textarea, select")) return;
+
+    const section = focused.closest?.("[data-section]");
+    const disclosure = section && sections.get(section.id);
+    if (!disclosure || disclosure.content.hidden) return;
+
+    const details = focused.closest("details[open]");
+    if (details && section.contains(details)) {
+      const summary = Array.from(details.children).find((child) => child.tagName === "SUMMARY");
+      if (!summary) return;
+      details.open = false;
+      summary.focus();
+    } else {
+      disclosure.setOpen(false);
+      disclosure.button.focus();
+    }
+    event.preventDefault();
+    event.stopPropagation();
+  });
 
   const revealTarget = (target) => {
     const section = target?.closest?.("[data-section]");

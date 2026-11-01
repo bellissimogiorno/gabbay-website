@@ -34,7 +34,8 @@
   text-align: center;
 }
 
-.publication-fallback > :not(.catalogue-scope-link) {
+.publication-fallback > :not(.catalogue-scope-link),
+.talk-fallback > :not(.catalogue-scope-link) {
   grid-column: 1 / -1;
   justify-self: start;
 }
@@ -332,6 +333,22 @@
 }
 
 @media print {
+  /* Print the complete canonical catalogue once, even when Topic is selected.
+     Topic replicas and Selected lists must not duplicate the same records. */
+  [data-publication-scope-panel="selected"],
+  [data-talk-scope-panel="selected"],
+  [data-publication-topic-trial],
+  [data-talk-topic-groups] {
+    display: none !important;
+  }
+
+  [data-publication-scope-panel="full"],
+  [data-talk-scope-panel="full"],
+  [data-publication-view-panel]:not([data-publication-topic-trial]),
+  [data-talk-view-panel]:not([data-talk-topic-groups]) {
+    display: block !important;
+  }
+
   .catalogue-density {
     display: none !important;
   }

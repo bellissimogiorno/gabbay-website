@@ -12,9 +12,18 @@
   const viewTabs = Array.from(talks.querySelectorAll("[data-talk-view-tab]"));
   const viewPanels = Array.from(talks.querySelectorAll("[data-talk-view-panel]"));
   const fullPanel = talks.querySelector('[data-talk-scope-panel="full"]');
-  const talkItems = fullPanel
-    ? Array.from(fullPanel.querySelectorAll("[data-talk-item]"))
+  const datePanel = viewPanels.find((panel) => panel.dataset.talkViewPanel === "date");
+  const topicPanel = viewPanels.find((panel) => panel.dataset.talkViewPanel === "topic");
+  const sharedTopics = Boolean(topicPanel?.hasAttribute("data-talk-topic-groups"));
+  // Repeated topic cards have namespaced anchors. Counts and sortable nodes
+  // always come from the canonical date listing, never from cross-listings.
+  const canonicalPanel = sharedTopics ? datePanel : fullPanel;
+  const talkItems = canonicalPanel
+    ? Array.from(canonicalPanel.querySelectorAll("[data-talk-item]"))
     : [];
+  const sortablePanels = sharedTopics
+    ? viewPanels.filter((panel) => panel !== topicPanel)
+    : viewPanels;
   const originalTalkOrder = new Map(
     talkItems.map((item, index) => [item, index]),
   );
@@ -53,6 +62,50 @@
 
   const itemValue = (item, name) => (item.dataset[name] || "").trim();
 
+  const isTopicTarget = (target) => Boolean(
+    sharedTopics && target && topicPanel.contains(target),
+  );
+
+  const topicGroupFor = (target) => isTopicTarget(target)
+    ? target.closest("details[data-talk-topic]")
+    : null;
+
+  const topicGroups = sharedTopics
+    ? Array.from(topicPanel.querySelectorAll("details[data-talk-topic]"))
+    : [];
+  const topicMotionPending = new WeakSet();
+
+  const closeOtherTopics = (group) => {
+    topicGroups.forEach((other) => {
+      if (other !== group && other.open) other.open = false;
+    });
+  };
+
+  const openTopicGroup = (group) => {
+    if (talks.dataset.enhanced === "true" && !group.open) topicMotionPending.add(group);
+    closeOtherTopics(group);
+    group.open = true;
+  };
+
+  topicGroups.forEach((group) => {
+    group.querySelector("summary")?.addEventListener("click", (event) => {
+      if (event.defaultPrevented || event.button !== 0 || group.open) return;
+      // Close the old group before the browser opens this one. Waiting for
+      // queued toggle events can otherwise undo a rapid second selection.
+      topicMotionPending.add(group);
+      closeOtherTopics(group);
+    }, true);
+    group.addEventListener("toggle", () => {
+      if (group.open) {
+        closeOtherTopics(group);
+        if (topicMotionPending.has(group)) {
+          window.gabbayCatalogueMotion?.reveal?.(group.querySelector(".talk-list"));
+        }
+      }
+      topicMotionPending.delete(group);
+    });
+  });
+
   const decodedHash = () => {
     const raw = window.location.hash.replace(/^#/, "");
     try {
@@ -68,6 +121,7 @@
     let view = parameters.get("talks-by") || "date";
     const hash = decodedHash();
     const hashTarget = hash ? document.getElementById(hash) : null;
+    const targetsTopic = isTopicTarget(hashTarget);
     const targetsTalks =
       !hash ||
       hash === "talks" ||
@@ -84,7 +138,10 @@
       };
     }
 
-    if (hash === "full-talks" || (hashTarget && fullPanel.contains(hashTarget))) {
+    if (targetsTopic) {
+      scope = "full";
+      view = "topic";
+    } else if (hash === "full-talks" || (hashTarget && fullPanel.contains(hashTarget))) {
       scope = "full";
       view = "date";
     } else if (hash === "selected-talks") {
@@ -96,9 +153,10 @@
       scope,
       view,
       targetsTalks: true,
+      topicGroup: topicGroupFor(hashTarget),
       talkAnchor:
         hashTarget &&
-        (scopePanels.includes(hashTarget) ||
+        (targetsTopic || scopePanels.includes(hashTarget) ||
           (fullPanel.contains(hashTarget) &&
             hashTarget.matches(talkAnchorSelector)))
           ? hashTarget
@@ -264,12 +322,14 @@
   const renderView = (view) => {
     const target = viewPanels.find((panel) => panel.dataset.talkViewPanel === view);
     if (!target) return false;
+    // Native topic disclosures retain their cards and open state across views.
+    if (sharedTopics && view === "topic") return true;
     if (renderedView === view && target.querySelectorAll("[data-talk-item]").length === talkItems.length) {
       return true;
     }
 
     const priorPanelContents = new Map(
-      viewPanels.map((panel) => [panel, Array.from(panel.childNodes)]),
+      sortablePanels.map((panel) => [panel, Array.from(panel.childNodes)]),
     );
     const priorItemPositions = talkItems.map((item) => ({
       item,
@@ -297,7 +357,7 @@
         nextContent = emptyMessage;
       }
 
-      viewPanels.forEach((panel) => panel.replaceChildren());
+      sortablePanels.forEach((panel) => panel.replaceChildren());
       target.append(nextContent);
       renderedView = view;
       return true;
@@ -411,9 +471,13 @@
     const nextState = stateFromLocation();
     const applied = applyState(nextState.scope, nextState.view);
     if (!nextState.targetsTalks) clearTalkParameters();
+    if (applied && nextState.topicGroup) openTopicGroup(nextState.topicGroup);
     if (applied && restoreAnchor && nextState.talkAnchor) {
       window.requestAnimationFrame(() => {
-        nextState.talkAnchor.scrollIntoView({ behavior: "auto", block: "start" });
+        const target = nextState.talkAnchor === nextState.topicGroup
+          ? nextState.topicGroup.querySelector("summary") || nextState.topicGroup
+          : nextState.talkAnchor;
+        target.scrollIntoView({ behavior: "auto", block: "start" });
       });
     }
     return applied;
@@ -430,7 +494,8 @@
       panel.removeAttribute("tabindex");
     });
     viewPanels.forEach((panel) => {
-      panel.hidden = panel.dataset.talkViewPanel !== "date";
+      panel.hidden = panel.dataset.talkViewPanel !== "date" &&
+        !(sharedTopics && panel === topicPanel);
       panel.removeAttribute("role");
       panel.removeAttribute("tabindex");
     });
@@ -532,6 +597,22 @@
         identifier = destination.hash.slice(1);
       }
       const target = document.getElementById(identifier);
+      if (isTopicTarget(target)) {
+        // Reveal the group before native fragment scrolling, including repeat
+        // clicks on a fragment that is already in the address bar.
+        if (applyState("full", "topic")) {
+          const group = topicGroupFor(target);
+          if (group) {
+            openTopicGroup(group);
+            if (event.detail === 0) {
+              window.requestAnimationFrame(() => {
+                if (group.isConnected) group.querySelector("summary")?.focus({ preventScroll: true });
+              });
+            }
+          }
+        }
+        return;
+      }
       if (
         !target ||
         !fullPanel.contains(target) ||

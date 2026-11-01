@@ -4699,26 +4699,31 @@ html:not(.is-exploring) .hero {
   font-size: 1.15rem;
 }
 
-/* Shared Research topics open independent, overlapping publication groups. */
-.publication-topic-note {
+/* Both catalogues use the same overlapping topic disclosures. */
+.publication-topic-note,
+.talk-topic-note {
   margin: 0 0 1.25rem;
   color: var(--ink-soft);
 }
 
-[data-publication-topic-trial] {
+[data-publication-topic-trial],
+[data-talk-topic-groups] {
   scroll-margin-top: 6rem;
 }
 
-.publication-topic-group {
+.publication-topic-group,
+.talk-topic-group {
   border-top: 1px solid var(--rule);
   scroll-margin-top: 6rem;
 }
 
-.publication-topic-group:last-child {
+.publication-topic-group:last-child,
+.talk-topic-group:last-child {
   border-bottom: 1px solid var(--rule);
 }
 
-.publication-topic-group > summary {
+.publication-topic-group > summary,
+.talk-topic-group > summary {
   padding: 1.1rem 0;
   color: var(--accent-dark);
   font-family: var(--modern);
@@ -4728,17 +4733,21 @@ html:not(.is-exploring) .hero {
 }
 
 .publication-topic-group > summary:hover .publication-topic-group__label,
-.publication-topic-group > summary:focus-visible .publication-topic-group__label {
+.publication-topic-group > summary:focus-visible .publication-topic-group__label,
+.talk-topic-group > summary:hover .talk-topic-group__label,
+.talk-topic-group > summary:focus-visible .talk-topic-group__label {
   text-decoration: underline;
   text-underline-offset: 0.18em;
 }
 
-.publication-topic-group > summary:focus-visible {
+.publication-topic-group > summary:focus-visible,
+.talk-topic-group > summary:focus-visible {
   outline: 3px solid var(--focus);
   outline-offset: 4px;
 }
 
-.publication-topic-group__count {
+.publication-topic-group__count,
+.talk-topic-group__count {
   margin-inline-start: 0.75rem;
   color: var(--ink-soft);
   font-size: inherit;
@@ -4746,11 +4755,12 @@ html:not(.is-exploring) .hero {
   white-space: nowrap;
 }
 
-.publication-topic-group > .publication-list {
+.publication-topic-group > .publication-list,
+.talk-topic-group > .talk-list {
   margin: 0 0 1rem;
 }
 
-/* Native disclosures use the same quiet, right-aligned plus/minus scheme as
+/* Native disclosures use the same quiet plus/minus scheme as
  * the homepage section buttons. Keep the summary's native keyboard behaviour. */
 details > summary,
 .publication-topic-group > summary,
