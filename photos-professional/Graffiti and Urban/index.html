@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$language" xml:lang="$language">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!-- saved from url=(0014)about:internet -->
+<head>
+<title>Graffiti and Urban</title>
+<link href="../res/common.css" rel="stylesheet" type="text/css" />
+<!--[if lte IE 6]><link href="../res/ie6fix.css" rel="stylesheet" type="text/css" /><![endif]-->
+<link href="../res/styles.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../res/jquery.min.js"></script>
+<script type="text/javascript">//<![CDATA[
+var level=1;
+var uplink='../index.html';
+var resPath='../res';
+var relPath='Graffiti and Urban/';
+var slideshowDelay=4000;
+var newDays=0;
+var captionsOn=false;
+var thumbsOn=true;
+var fitImages=false;
+var images=new Array(
+	{file:'slides/fotocopias graffiti.jpg',video:false,thumb:'thumbs/fotocopias graffiti.jpg',title:'',comment:'Colourful graffiti on brick wall. &lt;br&gt;(c) Murdoch J. Gabbay',link:'',date:'13/09/07 03:32',mod:'14560',size:'1.6 MB',width:'1280',height:'853'},
+	{file:'slides/brando graffiti.jpg',video:false,thumb:'thumbs/brando graffiti.jpg',title:'',comment:'Colourful graffiti from side of building, with image of Marlon Brando. The original was about twenty foot high.&lt;br&gt;(C) Murdoch J. Gabbay',link:'',date:'12/11/09 17:01',mod:'14560',size:'9.1 MB',width:'856',height:'1280'},
+	{file:'slides/uscita automezzi.JPG',video:false,thumb:'thumbs/uscita automezzi.JPG',title:'',comment:'Sign saying &quot;Attenzione uscita automezzi&quot; (&quot;attention: vehicle exit&quot;), on metal slats with fascinating detritus of peeling paint and old posters. &lt;br&gt;(c) Murdoch J. Gabbay&lt;br&gt;',link:'',date:'06/07/08 06:03',mod:'14560',size:'2.9 MB',width:'1280',height:'856'},
+	{file:'slides/dilapidated window.JPG',video:false,thumb:'thumbs/dilapidated window.JPG',title:'',comment:'Window with grille in dilapidated run-down brick wall with peeling plaster and bare bricks with crumbling mortar. Taken in the south of Milan, Italy. In Italy, even crumbling walls do their thing with a magic touch of style and elegance. &lt;br&gt;(c) Murdoch J. Gabbay',link:'',date:'06/07/08 05:01',mod:'14560',size:'2.8 MB',width:'856',height:'1280'},
+	{file:'slides/odio graffiti.jpg',video:false,thumb:'thumbs/odio graffiti.jpg',title:'',comment:'Extensive and elaborate graffiti art on wall.&lt;br&gt;(c) Murdoch J. Gabbay',link:'',date:'',mod:'14696',size:'1.7 MB',width:'1280',height:'339'}
+);
+
+var audio='';
+
+var mapType='Map';
+var mapZoom=18;
+var text={atLastPage:'At last page',atLastPageQuestion:'Where to go next?',startOver:'Start over',up:'Up one level',stop:'Stop',upgradeBrowser:'Upgrade your browser!',upgradeBrowserExplain:'You are using and outdated version of Internet Explorer, which cannot properly display this album.',contin:'Continue',download:'Download',original:'Original',showExif:'Display photograpic (Exif/Iptc) data',photoData:'Photo data',showLocation:'Show the location on map',map:'Map',noGPS:'No GPS data found',buyThis:'Buy this item',notForSale:'Not for sale.'};
+//]]></script>
+<script type="text/javascript" src="../res/swfobject.js"></script>
+<script type="text/javascript" src="../res/skin.js"></script>
+
+</head>
+<body>
+	<div id="splash">
+		<div id="header" style="background-image:url(folderimage.jpg);height:400px;">
+			<div id="title">
+				<div id="parent"><a href="../index.html" title="Up one level" class="showhint">&nbsp;</a></div>
+				<div class="breadcrumb"><a href="../index.html">Murdoch J. Gabbay</a></div>
+				<h1>Graffiti and Urban</h1>
+				
+			</div>
+			<div id="startbtn">&nbsp;</div><div id="starttext">Start slideshow</div>
+		</div>
+		<div id="galleries"><div id="gallerycnt">
+			
+			<div id="grid">
+				<ul class="thmb">
+					<li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li>
+				</ul>
+			</div>
+		</div></div>
+		<div id="footer">5 images&nbsp;&nbsp;&middot;&nbsp;&nbsp;Album by <a href="http://jalbum.net" title="Jalbum, freeware album generator, v8.7.1" class="showhint">Jalbum</a> &amp; <a href="http://lazaworx.com" title="Skin: Turtle White, v1.0" class="showhint">Turtle</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;<a href="javascript:void(0)" class="showhelp">Help</a></div>
+	</div>
+	<div id="images" style="display:none;">
+		<div class="current"></div>
+		<div class="swap"></div>
+		<div class="wait"></div>
+		<div id="navigation">
+			<div id="thumbs">
+				<div id="scroll-left">&nbsp;</div><div id="scroll-right">&nbsp;</div>
+				<div id="thumbcnt"><ul class="thmb" style="width:950px">
+					<li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li>
+				</ul></div>
+			</div>
+			<div id="controls"><ul class="showhint"><li id="prev" title="Previous picture">&nbsp;</li><li id="up" title="Back to splash page">&nbsp;</li><li id="noresize" title="1:1 size">&nbsp;</li><li id="resize" title="Fit to screen">&nbsp;</li><li id="info" title="Show caption / info">&nbsp;</li><li id="noinfo" title="Hide caption / info">&nbsp;</li><li id="index" title="Show thumbnails">&nbsp;</li><li id="noindex" title="Hide thumbnails">&nbsp;</li><li id="play" title="Start autoplay">&nbsp;</li><li id="pause" title="Stop autoplay">&nbsp;</li><li id="next" title="Next picture">&nbsp;</li><div class="clear"></div></ul></div>
+		</div>
+	</div>
+	<div id="help">
+		<div class="window" id="helpsplash"><div class="close"><a href="javascript:void(0)" title="Close window" class="showhint">&nbsp;</a></div><h2>Splash page</h2>
+		<ol><li><b>Up</b> one level <em>Up arrow</em></li><li>Start <b>slideshow</b> <em>Numpad *</em> <em>Space</em></li><li>Subalbums and thumbnails (if exists)</li></ol><p>Press <b>F1</b> at any time to get help!</p></div>
+		<div class="window" id="helpimage"><div class="close"><a href="javascript:void(0)" title="Close window" class="showhint">&nbsp;</a></div><h2>Image page</h2>
+		<ol><li>Thumbnail navigation window</li><li><b>Previous</b> picture <em>Left arrow</em></li><li>$text.help.backtoSplash</li><li>Toggle <b>fit to screen</b> or <b>1:1</b> size <em>Numpad +</em></li><li>Show/hide <b>captions</b> and other info <em>Numpad -</em></li><li>Show/hide <b>thumbnails</b> <em>Numpad -</em></li><li>Start/stop <b>slideshow</b> <em>Numpad *</em> <em>Space</em></li><li><b>Next</b> picture <em>Right arrow</em></li><li><b>Double click the image</b> to switch between <b>fit to window</b> or <b>1:1</b> magnification. You can also <b>drag and move</b> if larger than the screen.</li><li><b>Information window</b>: caption, photo data, map, shopping cart, etc.</li></ol></div>
+	</div>		
+</body>
+</html>

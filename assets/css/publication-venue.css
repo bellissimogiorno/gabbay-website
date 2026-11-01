@@ -1,0 +1,28 @@
+/* Reversible venue trial, loaded after link-treatment.css.
+ * Keep metadata in a single text flow, with ordinary wrapping at every width.
+ * Disable publication_venue_trial in _config.yml to restore the prior layout.
+ */
+html.publication-venue-trial .publication__bibliography--venue {
+  display: block;
+  font-style: normal;
+  font-weight: 400;
+  white-space: normal;
+}
+
+html.publication-venue-trial .publication__bibliography--venue * {
+  display: inline;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  white-space: normal;
+}
+
+html.publication-venue-trial .publication__bibliography--venue > *:not(:last-child)::after {
+  margin: 0 0.3em;
+}
+
+/* Venue links retain the site's colour and hover feedback, in normal weight. */
+html.publication-venue-trial .publication__bibliography--venue a[href] {
+  font-weight: 400 !important;
+}

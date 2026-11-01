@@ -1,0 +1,90 @@
+/* Final UI refinements. The versioned filename and final layout position make
+ * this small correction independent of previously cached component styles. */
+details > summary.disclosure-summary {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-inline-end: 0;
+  list-style: none !important;
+  list-style-type: none !important;
+  list-style-image: none !important;
+}
+
+details > summary.disclosure-summary::marker {
+  content: "" !important;
+}
+
+details > summary.disclosure-summary::-webkit-details-marker {
+  display: none !important;
+}
+
+/* These summaries carry their own explicit, decorative indicator. Suppress
+ * the older summary pseudo-elements so there is exactly one right-hand mark. */
+details > summary.disclosure-summary::before,
+details > summary.disclosure-summary::after {
+  display: none !important;
+  content: none !important;
+}
+
+.disclosure-summary > .disclosure-summary__label {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.disclosure-summary > .disclosure-indicator {
+  position: relative;
+  flex: 0 0 1rem;
+  width: 1rem;
+  height: 1rem;
+  margin-inline-end: 0.2rem;
+  color: var(--ink-soft);
+}
+
+.disclosure-indicator::before,
+.disclosure-indicator::after {
+  position: absolute;
+  top: calc(50% - 0.75px);
+  left: 0;
+  width: 100%;
+  height: 0;
+  border-top: 1.5px solid currentColor;
+  content: "";
+}
+
+.disclosure-indicator::after {
+  transform: rotate(90deg);
+  transition: transform 150ms ease;
+}
+
+details[open] > .disclosure-summary > .disclosure-indicator::after {
+  transform: rotate(0deg);
+}
+
+/* A small optical increase matches the heavier material links. The original
+ * Normal title scale and the links themselves remain unchanged. */
+@media screen {
+  [data-catalogue-density="compact"] :is(.publication__title, .talk-entry__title) {
+    font-size: 1.05em;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .disclosure-indicator::after {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .disclosure-summary > .disclosure-indicator {
+    color: ButtonText;
+  }
+}
+
+@media print {
+  .disclosure-indicator {
+    display: none;
+  }
+}

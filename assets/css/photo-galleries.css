@@ -1,0 +1,187 @@
+/* The older photo pages keep their original pictures, captions and sections. */
+.legacy-photo-gallery .photo-thumbnail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 12.5rem), 1fr));
+  gap: 1.25rem 1.5rem;
+  margin: 1.25rem 0 2rem;
+}
+
+.legacy-photo-gallery .thumbnail-container {
+  min-width: 0;
+  margin: 0;
+}
+
+.legacy-photo-gallery .thumbnail {
+  display: flex;
+  align-items: flex-end;
+  min-height: 12.5rem;
+}
+
+.legacy-photo-gallery .thumbnail a {
+  display: block;
+  max-width: 100%;
+}
+
+.legacy-photo-gallery .thumbnail img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  margin: 0;
+  border: 0;
+}
+
+.legacy-photo-gallery .thumbnail-name {
+  margin-top: 0.4em;
+  font: inherit;
+  overflow-wrap: anywhere;
+}
+
+/* Malika's column order is part of the work, so keep both matrices intact. */
+.malika-photo-gallery table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  border: 0;
+  font: inherit;
+}
+
+.malika-photo-gallery td {
+  padding: 0.2rem;
+  vertical-align: top;
+  border: 0;
+}
+
+.malika-photo-gallery .malika-colour-matrix td {
+  width: 33.333%;
+}
+
+.malika-photo-gallery .malika-original-row td {
+  width: 20%;
+}
+
+.malika-photo-gallery td a,
+.malika-photo-gallery td img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin: 0;
+  border: 0;
+}
+
+.malika-gallery-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em 1.25em;
+  margin-bottom: 1.5rem;
+  font: inherit;
+}
+
+/* Native modal framing leaves the full photograph visible at every size. */
+html.photo-viewer-open {
+  overflow: hidden;
+}
+
+.photo-viewer {
+  width: min(76rem, calc(100% - 2rem));
+  max-width: none;
+  max-height: calc(100vh - 2rem);
+  max-height: calc(100dvh - 2rem);
+  padding: clamp(0.75rem, 2vw, 1.25rem);
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  overflow: auto;
+}
+
+.photo-viewer[open] {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.photo-viewer::backdrop {
+  background: rgb(16 29 31 / 0.78);
+}
+
+.photo-viewer [hidden] {
+  display: none !important;
+}
+
+.photo-viewer__toolbar,
+.photo-viewer__footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5em 0.75em;
+}
+
+.photo-viewer__toolbar button {
+  min-height: 2.75rem;
+  padding: 0.3em 0.75em;
+  border: 1px solid var(--rule-strong);
+  background: var(--surface);
+  color: var(--accent-dark);
+  font: inherit;
+  font-weight: 600;
+}
+
+.photo-viewer__toolbar button:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: var(--paper-deep);
+}
+
+.photo-viewer__toolbar button:disabled {
+  color: var(--ink-soft);
+  opacity: 0.65;
+}
+
+.photo-viewer__close {
+  margin-inline-start: auto;
+}
+
+.photo-viewer__position {
+  font-variant-numeric: tabular-nums;
+}
+
+.photo-viewer__figure {
+  min-width: 0;
+  margin: 0;
+}
+
+.photo-viewer__stage {
+  display: grid;
+  place-items: center;
+  min-height: min(35vh, 18rem);
+}
+
+.photo-viewer__image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 14rem);
+  max-height: max(6rem, calc(100dvh - 14rem));
+  object-fit: contain;
+}
+
+.photo-viewer figcaption {
+  margin-top: 0.75em;
+  font: inherit;
+  overflow-wrap: anywhere;
+}
+
+.photo-viewer__status {
+  margin: 0;
+}
+
+.photo-viewer__original {
+  margin-inline-start: auto;
+}
+
+@media print {
+  html.photo-viewer-open { overflow: visible; }
+  .photo-viewer[open] { display: none !important; }
+}

@@ -1,0 +1,122 @@
+/* NEW uses the shared article type scale throughout. The notation and source
+ * example add composition without changing the surrounding body size. */
+.quantifier-article {
+  padding-bottom: 1.5rem;
+}
+
+.quantifier-introduction {
+  display: flow-root;
+  margin-top: 0.25rem;
+}
+
+.page-content .quantifier-lede {
+  margin-bottom: 1.5rem;
+  color: var(--ink);
+  font-size: inherit;
+}
+
+.quantifier-introduction strong {
+  font-weight: 600;
+}
+
+.quantifier-article .legacy-banner img {
+  width: 100%;
+  height: auto;
+}
+
+.quantifier-notation {
+  clear: both;
+  margin-top: 2.75rem;
+}
+
+.quantifier-example {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.quantifier-source {
+  min-width: 0;
+  padding: var(--code-block-padding);
+  background: var(--code-block-background);
+}
+
+.quantifier-result {
+  min-width: 0;
+  padding: 0;
+}
+
+.page-content .quantifier-example p {
+  margin: 0 0 1rem;
+  color: var(--ink-soft);
+  font-size: inherit;
+}
+
+.page-content .quantifier-source pre {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.quantifier-result .legacy-figure {
+  margin: 0;
+}
+
+.quantifier-result .legacy-figure img {
+  max-width: 100%;
+}
+
+.quantifier-result .quantifier-typeset-output {
+  display: none;
+}
+
+.quantifier-result .media-unavailable .media-fallback {
+  display: none;
+}
+
+.quantifier-result .media-unavailable .quantifier-typeset-output {
+  display: block;
+  margin: 0;
+  padding-block: 0.5rem;
+  color: var(--ink);
+  font-size: inherit;
+}
+
+.quantifier-result-symbol {
+  display: inline-block;
+  font-family: var(--sans);
+  transform: scaleX(-1);
+}
+
+.quantifier-origin {
+  margin-top: 2.75rem;
+}
+
+@media (max-width: 680px) {
+  .quantifier-example {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+  }
+
+  .quantifier-result {
+    padding: 0;
+  }
+
+  .quantifier-notation,
+  .quantifier-origin {
+    margin-top: 2.25rem;
+  }
+}
+
+@media print {
+  .quantifier-example {
+    display: block;
+  }
+
+  .quantifier-result {
+    margin-top: 1rem;
+    padding: 0;
+  }
+}
+

@@ -1,0 +1,117 @@
+#!/bin/bash
+#
+# pdftodjvu version 1.0
+# By Murdoch J. Gabbay
+#
+# Mostly based on the script pdfs2djvu found at http://www.howtoforge.com/creating_djvu_documents_on_linux
+#
+# See also the any2djvu script; that does not require pdftoppm, cjb2, or djvm --- but it uploads the pdf to a server and converts it there.
+
+function usage
+{
+echo
+echo "pdftodjvu version 1.0"
+echo "By Murdoch J. Gabbay, 1 October 2006"
+echo
+echo "This script converts pdf files to djvu, a viewing format which is more compact and faster to display than pdf."
+echo "This script requires pdftoppm, cjb2, and djvm."
+echo "This script is based on pdfstodjvu.  See www.gabbay.org.uk for more details."
+echo
+echo "Usage: pdftodjvu [-c] | [--crop] | [-h] | [--help] [mydocument.pdf]"
+echo
+echo "pdftodjvu mydocument.pdf will create a djvu version called mydocument.djvu in the current directory."
+echo "With the -c or --crop command line option, mydocument.djvu will be cropped to remove white margins (useful for viewing onscreen)."
+}
+
+CROP=0
+if [ -n "$1" ]; then
+  case $1 in
+      -c | --crop )           shift
+                                CROP=1
+                                ;;
+      -h | --help | -u | --usage | -?)           usage
+                                exit
+                                ;;
+  esac
+fi
+
+if [ -z `which pdftoppm` -o -z `which cjb2` -o -z `which djvm` ]; then
+  echo
+  echo "-----------------------------------------"
+  echo "Error: pdftoppm, cjb2 and djvm are needed"
+  echo
+  exit 1
+fi
+
+shopt -s extglob
+
+DEFMASK="*.pdf"
+DPI=600
+
+#if [ -n "$3" ]; then
+#  DPI=600
+#else
+#  DPI=$3
+#fi
+#echo $DPI
+
+#if [ -n "$2" ]; then
+#  OUTFILE=$2
+#else
+#  OUTFILE="0.djvu"
+#fi
+
+if [ -n "$1" ]; then
+ PDF=$1
+else
+  echo
+    usage
+    echo
+    echo "-----------------------------------------"
+    echo "Error: you must specify a file that exists, as in 'pdfview mydocument.pdf', and mydocument.pdf is in the current directory."
+    echo
+    exit 1
+fi
+
+DJVU=$(echo "$PDF" | sed -e 's/^\(.*\).pdf$/\1.djvu/')
+if [ "$PDF" = "$DJVU" ] ; then
+ usage
+ echo
+ echo "-----------------------------------------"
+ echo "Error: $PDF is not a valid input."
+ echo "The name of your file must end in .pdf, as in: pdftodjvu mydocument.pdf"
+ exit 1
+fi
+
+#for PDF in $MASK; do
+  if [ ! -e $PDF ]; then
+    usage
+    echo
+    echo "-----------------------------------------"
+    echo "Error: I cannot convert $PDF to djvu format, because file $PDF does not exist"
+    echo
+    exit 1
+  fi
+  echo Creating djvu from $PDF
+  mkdir /tmp/gallerymake-$PDF
+  pdftoppm -mono -r 600 -aa yes $PDF /tmp/gallerymake-$PDF/$PDF
+  for PBM in /tmp/gallerymake-$PDF/$PDF*.pbm; do
+if [ $CROP = "1" ]; then
+    echo Trimming $PBM
+    convert -trim $PBM $PBM-trim.pbm
+    echo Converting $PBM to djvu
+    cjb2 -dpi $DPI $PBM-trim.pbm $PBM.djvu
+    rm -f $PBM $PBM-trim.pbm
+else
+    echo Converting $PBM to djvu
+    cjb2 -dpi $DPI $PBM $PBM.djvu
+    rm -f $PBM
+fi
+  done
+  echo "Assembling $DJVU file for your viewing pleasure."
+  djvm -c $DJVU /tmp/gallerymake-$PDF/*.pbm.djvu
+  rm -rf /tmp/gallerymake-$PDF
+  echo "All done."
+#done
+
+

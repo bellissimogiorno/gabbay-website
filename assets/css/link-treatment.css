@@ -1,0 +1,52 @@
+/* Reversible link-style trial. Disable link_style_trial in _config.yml to undo.
+ * The important declarations deliberately replace every existing component's
+ * link colour, weight, and hover treatment while leaving its layout intact.
+ */
+html.link-style-trial a[href] {
+  color: var(--accent-dark) !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+}
+
+html.link-style-trial a[href]:hover,
+html.link-style-trial a[href]:focus-visible {
+  color: var(--accent) !important;
+  text-decoration: underline !important;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+/* Links respond to hover and focus without decorative arrow markers. */
+html.link-style-trial a[href]::after,
+html.link-style-trial a.topic-card .topic-card__text strong::after,
+html.link-style-trial a.writing-item strong::after {
+  content: none;
+}
+
+/* Linked entries underline their title, keeping the description easy to read. */
+html.link-style-trial a.topic-card:is(:hover, :focus-visible),
+html.link-style-trial a.writing-item:is(:hover, :focus-visible) {
+  text-decoration: none !important;
+}
+
+html.link-style-trial a.topic-card:is(:hover, :focus-visible) .topic-card__text strong,
+html.link-style-trial a.writing-item:is(:hover, :focus-visible) strong {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+html.link-style-trial a.topic-card .topic-card__text strong,
+html.link-style-trial a.writing-item strong {
+  color: inherit;
+  font-weight: 700;
+}
+
+/* Retain the existing keyboard outline and forced-colour link affordance. */
+@media (forced-colors: active) {
+  html.link-style-trial a[href],
+  html.link-style-trial a[href]:hover,
+  html.link-style-trial a[href]:focus-visible {
+    color: LinkText !important;
+  }
+}

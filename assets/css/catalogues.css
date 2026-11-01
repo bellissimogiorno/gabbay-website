@@ -1,0 +1,316 @@
+/* Homepage catalogue choices and alternating record backgrounds. */
+.publication-tablist--scope .publication-tab,
+.talk-tablist--scope .talk-tab,
+.publication-fallback .catalogue-scope-link,
+.talk-fallback .catalogue-scope-link {
+  min-width: 0;
+  min-height: 4.1rem;
+  padding: 1rem 0.65rem 0.9rem;
+  font-size: 1.12em;
+  font-weight: 650;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  white-space: normal;
+  text-wrap: balance;
+  text-transform: none;
+}
+
+.publication-tablist--scope .publication-tab[aria-selected="true"],
+.talk-tablist--scope .talk-tab[aria-selected="true"] {
+  background: color-mix(in srgb, var(--zone-bg, var(--paper-deep)) 68%, var(--surface));
+}
+
+.publication-fallback,
+.talk-fallback {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.4rem 1rem;
+}
+
+.catalogue-scope-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.publication-fallback > :not(.catalogue-scope-link) {
+  grid-column: 1 / -1;
+  justify-self: start;
+}
+
+.catalogue-density {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  min-width: 0;
+  padding: 0;
+  margin: 0.8rem 0 0.25rem;
+  border: 0;
+  color: var(--ink-soft);
+  font: inherit;
+}
+
+.catalogue-density__options {
+  display: inline-flex;
+  overflow: hidden;
+  border: 1px solid var(--rule-strong);
+  border-radius: 0.25rem;
+}
+
+.catalogue-density__option {
+  position: relative;
+  margin: 0;
+  cursor: pointer;
+}
+
+.catalogue-density__option + .catalogue-density__option {
+  border-inline-start: 1px solid var(--rule-strong);
+}
+
+.catalogue-density__option > span {
+  display: grid;
+  min-height: 2.5rem;
+  padding: 0.35rem 0.8rem;
+  place-items: center;
+  font-weight: 600;
+}
+
+.catalogue-density__option input:checked + span {
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.catalogue-density__option input:focus-visible + span {
+  outline: 2px solid var(--focus);
+  outline-offset: -3px;
+}
+
+.catalogue-compact-metadata {
+  display: none;
+  margin: 0;
+}
+
+[data-catalogue-density] .catalogue-compact-metadata cite,
+[data-catalogue-density] .catalogue-compact-metadata cite a[href] {
+  font: inherit;
+  font-weight: inherit !important;
+}
+
+/* Opaque fallbacks follow each section's ambient palette. Modern browsers use
+   the mixes below, which also follow later changes to the section colours. */
+.publication-interface {
+  --catalogue-row-light: #f1f4f7;
+  --catalogue-row-dark: #ecf0f3;
+  --catalogue-highlight: #e9edf0;
+}
+
+.talk-interface {
+  --catalogue-row-light: #f2f0f6;
+  --catalogue-row-dark: #eeebf2;
+  --catalogue-highlight: #ebe8ef;
+}
+
+/* Every catalogue view uses these list/record classes, including the
+   server-rendered overlapping topic groups. Parity follows the current DOM
+   order automatically when the existing controllers regroup the records.
+   The article owns its padding, stripe and highlight so the entire row paints
+   together, including the space to the right of its text. */
+.publication-list > .publication-list__item,
+.talk-list > .talk-list__item {
+  padding-inline: 0;
+  background: none;
+}
+
+.publication-list > .publication-list__item > .publication,
+.talk-list > .talk-list__item > .talk-entry {
+  width: 100%;
+  padding-inline: clamp(0.65rem, 1.4vw, 1rem);
+}
+
+.publication-list > .publication-list__item:nth-child(odd) > .publication,
+.talk-list > .talk-list__item:nth-child(odd) > .talk-entry {
+  background: var(--catalogue-row-light, var(--zone-bg));
+  background: color-mix(in srgb, var(--zone-bg) 85%, white);
+}
+
+.publication-list > .publication-list__item:nth-child(even) > .publication,
+.talk-list > .talk-list__item:nth-child(even) > .talk-entry {
+  background: var(--catalogue-row-dark, var(--zone-bg));
+  background: color-mix(in srgb, var(--zone-bg) 99%, black);
+}
+
+@media (hover: hover) {
+  .publication-list > .publication-list__item > .publication:hover,
+  .talk-list > .talk-list__item > .talk-entry:hover {
+    background: var(--catalogue-highlight, var(--zone-bg));
+    background: color-mix(in srgb, var(--zone-bg) 98%, black);
+  }
+}
+
+.publication-list > .publication-list__item > .publication:has(:focus-visible),
+.talk-list > .talk-list__item > .talk-entry:has(:focus-visible) {
+  background: var(--catalogue-highlight, var(--zone-bg));
+  background: color-mix(in srgb, var(--zone-bg) 98%, black);
+}
+
+/* The same arithmetic/logic mark identifies the paper and its implementation. */
+.publication__symbol {
+  display: block;
+  width: 3.25rem;
+  max-width: 100%;
+}
+
+.software-item__marker.software-item__marker--zkfol {
+  width: 2.5rem;
+  max-width: 100%;
+  aspect-ratio: auto;
+}
+
+.publication__symbol .zkfol-icon,
+.software-item__marker--zkfol .zkfol-icon {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  stroke-width: 3.1;
+}
+
+.software-item__marker--zkfol .zkfol-icon path {
+  vector-effect: none;
+}
+
+.research-theme__symbol--zkfol {
+  width: 100%;
+}
+
+.research-theme__symbol--zkfol .zkfol-icon {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Compact keeps complete titles, key metadata and material links. Original
+   detailed metadata and author prose remain available in Normal and print. */
+@media screen {
+  [data-catalogue-density="compact"] :is(.publication__title, .talk-entry__title) {
+    font-size: 1em;
+  }
+
+  [data-catalogue-density="compact"] :is(.publication, .talk-entry) {
+    display: flow-root;
+    padding-block: 0.75rem;
+  }
+
+  [data-catalogue-density="compact"] .entry-marker {
+    float: right;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.1rem 0.6rem;
+    width: auto;
+    max-width: 45%;
+    margin: 0.1rem 0 0.25rem 1rem;
+  }
+
+  [data-catalogue-density="compact"] :is(.publication__body, .talk-entry__body) {
+    line-height: 1.45;
+  }
+
+  [data-catalogue-density="compact"] :is(
+    .publication__commentary, .publication__summary,
+    .talk-entry__description, .talk-entry__commentary,
+    .publication__authors, .publication__bibliography--venue,
+    .talk-entry__details
+  ) {
+    display: none;
+  }
+
+  [data-catalogue-density="compact"] .publication__body > .publication__bibliography--venue {
+    display: none;
+  }
+
+  [data-catalogue-density="compact"] :is(
+    .catalogue-compact-metadata, .publication__supersession
+  ) {
+    display: inline;
+    margin: 0;
+  }
+
+  [data-catalogue-density="compact"] .publication__supersession::before {
+    color: var(--ink-soft);
+    content: " · ";
+  }
+
+  [data-catalogue-density="compact"] .catalogue-compact-metadata > :not(:last-child)::after {
+    margin-inline: 0.3em;
+    color: var(--ink-soft);
+    content: "·";
+  }
+
+  [data-catalogue-density="compact"] :is(.publication__links, .talk-entry__links) {
+    display: inline-flex;
+    max-width: 100%;
+    gap: 0.15rem 0.7rem;
+    margin: 0;
+    vertical-align: baseline;
+  }
+
+  [data-catalogue-density="compact"] :is(.publication__links, .talk-entry__links) > li {
+    max-width: 100%;
+  }
+
+  [data-catalogue-density="compact"] :is(.publication__links, .talk-entry__links)::before {
+    color: var(--ink-soft);
+    content: "·";
+  }
+
+  [data-catalogue-density="compact"] .talk-entry__sessions {
+    margin-block: 0.35rem;
+  }
+
+  [data-catalogue-density="compact"] .talk-entry__sessions > li {
+    gap: 0.15rem 0.6rem;
+    padding-block: 0.35rem;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  [data-catalogue-density="compact"] .entry-marker {
+    float: none;
+    justify-content: flex-start;
+    max-width: 100%;
+    margin: 0 0 0.3rem;
+  }
+}
+
+@media (forced-colors: active) {
+  .catalogue-density__option input:checked + span {
+    background: Highlight;
+    color: HighlightText;
+  }
+
+  .publication-list > .publication-list__item:nth-child(n) > .publication,
+  .talk-list > .talk-list__item:nth-child(n) > .talk-entry {
+    background: Canvas;
+  }
+
+  .publication-list > .publication-list__item > .publication:has(:focus-visible),
+  .talk-list > .talk-list__item > .talk-entry:has(:focus-visible) {
+    outline: 1px solid Highlight;
+    outline-offset: -1px;
+  }
+}
+
+@media print {
+  .catalogue-density {
+    display: none !important;
+  }
+
+  .publication-list > .publication-list__item:nth-child(n) > .publication,
+  .talk-list > .talk-list__item:nth-child(n) > .talk-entry {
+    padding-inline: 0;
+    background: transparent !important;
+  }
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$language" xml:lang="$language">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!-- saved from url=(0014)about:internet -->
+<head>
+<title>Architecture</title>
+<link href="../res/common.css" rel="stylesheet" type="text/css" />
+<!--[if lte IE 6]><link href="../res/ie6fix.css" rel="stylesheet" type="text/css" /><![endif]-->
+<link href="../res/styles.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../res/jquery.min.js"></script>
+<script type="text/javascript">//<![CDATA[
+var level=1;
+var uplink='../index.html';
+var resPath='../res';
+var relPath='Architecture/';
+var slideshowDelay=4000;
+var newDays=0;
+var captionsOn=false;
+var thumbsOn=true;
+var fitImages=false;
+var images=new Array(
+	{file:'slides/Pantheon columns slanted.jpg',video:false,thumb:'thumbs/Pantheon columns slanted.jpg',title:'',comment:'Columns of the Pantheon, slanted view, one bright sunny day in Paris.  &quot;Aux grandes hommes la patrie reconnaissante&quot;.  Nobody does pomp like the French.&lt;br&gt;(c) Murdoch J. Gabbay',link:'',date:'11/06/09 14:33',mod:'14560',size:'8.7 MB',width:'1280',height:'845'},
+	{file:'slides/Pantheon columns from below.jpg',video:false,thumb:'thumbs/Pantheon columns from below.jpg',title:'',comment:'Columns outside the Pantheon in Paris, France.  Viewed from below to make quite an abstract geometic pattern.&lt;br&gt;(c) Murdoch J. Gabbay',link:'',date:'10/06/09 10:12',mod:'14560',size:'6.0 MB',width:'1280',height:'850'},
+	{file:'slides/Paris Saint Severin.jpg',video:false,thumb:'thumbs/Paris Saint Severin.jpg',title:'',comment:'The church of Saint Severin in Paris, France.  What a remarkable space.  Note the &quot;organic&quot; feel of the central column, like a tree holding up the heavens.&lt;br&gt;(c) Murdoch J. Gabbay',link:'',date:'03/06/09 15:10',mod:'14560',size:'9.3 MB',width:'844',height:'1280'},
+	{file:'slides/Sacre Coeur angels.jpg',video:false,thumb:'thumbs/Sacre Coeur angels.jpg',title:'',comment:'The dome of the Basilica of the Sacre Coeur in Montmatre, viewed from inside.  If this were in the UK I&apos;d call it a splendidly unapologetic piece of Victorian kitsch.  Regardless, I found this shot particularly atmospheric.&lt;br&gt;(c) Murdoch J. Gabbay',link:'',date:'13/06/09 11:44',mod:'14560',size:'3.6 MB',width:'1280',height:'850'},
+	{file:'slides/Milan Cathedral Escher.jpg',video:false,thumb:'thumbs/Milan Cathedral Escher.jpg',title:'',comment:'The cathedral in Milan, Italy, looking like an Escher illustration.  This really is what it looked like.&lt;br&gt;(c) Murdoch J. Gabbay',link:'',date:'05/07/08 05:41',mod:'14560',size:'8.9 MB',width:'856',height:'1280'},
+	{file:'slides/Paris church balcony.jpg',video:false,thumb:'thumbs/Paris church balcony.jpg',title:'',comment:'Spiral stairway to the pulpit of Saint Etienne du Mont in Paris, France.&lt;br&gt;(c) Murdoch J. Gabbay',link:'',date:'11/06/09 14:19',mod:'14560',size:'7.1 MB',width:'850',height:'1280'},
+	{file:'slides/Madrid Almudena Cathedral 1.jpg',video:false,thumb:'thumbs/Madrid Almudena Cathedral 1.jpg',title:'',comment:'The roof of the Almudena Cathedral in Madrid.&lt;br&gt;(C) Murdoch J. Gabbay',link:'',date:'12/11/09 17:07',mod:'14560',size:'6.1 MB',width:'1280',height:'850'},
+	{file:'slides/Madrid Almudena Cathedral 2.jpg',video:false,thumb:'thumbs/Madrid Almudena Cathedral 2.jpg',title:'',comment:'The roof of the Almudena Cathedral in Madrid, with its organ.&lt;br&gt;(C) Murdoch J. Gabbay',link:'',date:'12/11/09 17:07',mod:'14560',size:'6.0 MB',width:'850',height:'1280'},
+	{file:'slides/Saint Chapelle.jpg',video:false,thumb:'thumbs/Saint Chapelle.jpg',title:'',comment:'Saint Chapelle in Paris, France.  This was built in the 13th century, and if it had been built today it would still have been astounding.&lt;br&gt;(c) Murdoch J. Gabbay',link:'',date:'13/06/09 16:09',mod:'14560',size:'12.4 MB',width:'1280',height:'849'},
+	{file:'slides/Pantheon roofscape.jpg',video:false,thumb:'thumbs/Pantheon roofscape.jpg',title:'',comment:'Slanted roofscape over Paris, looking from Notre Dame Cathedral to the Pantheon.&lt;br&gt;(C) Murdoch J. Gabbay',link:'',date:'13/06/09 10:23',mod:'14560',size:'9.3 MB',width:'1280',height:'850'},
+	{file:'slides/Door of St Marks Cathedral in Edinburgh.jpg',video:false,thumb:'thumbs/Door of St Marks Cathedral in Edinburgh.jpg',title:'',comment:'A door of St Mark&apos;s Cathedral in Edinburgh, UK, full of gargoyles and wrought iron and stone.  From this angle, it looks a bit like a boat.&lt;br&gt;(c) Murdoch J. Gabbay',link:'',date:'29/04/09 18:29',mod:'14560',size:'8.5 MB',width:'1280',height:'850'},
+	{file:'slides/Pisa columns.JPG',video:false,thumb:'thumbs/Pisa columns.JPG',title:'',comment:'Some columns in Pisa, Italy, just before the sun vanished.&lt;br&gt;(c) Murdoch J. Gabbay',link:'',date:'28/06/08 09:24',mod:'14560',size:'2.8 MB',width:'1280',height:'856'}
+);
+
+var audio='';
+
+var mapType='Map';
+var mapZoom=18;
+var text={atLastPage:'At last page',atLastPageQuestion:'Where to go next?',startOver:'Start over',up:'Up one level',stop:'Stop',upgradeBrowser:'Upgrade your browser!',upgradeBrowserExplain:'You are using and outdated version of Internet Explorer, which cannot properly display this album.',contin:'Continue',download:'Download',original:'Original',showExif:'Display photograpic (Exif/Iptc) data',photoData:'Photo data',showLocation:'Show the location on map',map:'Map',noGPS:'No GPS data found',buyThis:'Buy this item',notForSale:'Not for sale.'};
+//]]></script>
+<script type="text/javascript" src="../res/swfobject.js"></script>
+<script type="text/javascript" src="../res/skin.js"></script>
+
+</head>
+<body>
+	<div id="splash">
+		<div id="header" style="background-image:url(folderimage.jpg);height:400px;">
+			<div id="title">
+				<div id="parent"><a href="../index.html" title="Up one level" class="showhint">&nbsp;</a></div>
+				<div class="breadcrumb"><a href="../index.html">Murdoch J. Gabbay</a></div>
+				<h1>Architecture</h1>
+				
+			</div>
+			<div id="startbtn">&nbsp;</div><div id="starttext">Start slideshow</div>
+		</div>
+		<div id="galleries"><div id="gallerycnt">
+			
+			<div id="grid">
+				<ul class="thmb">
+					<li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li>
+				</ul>
+			</div>
+		</div></div>
+		<div id="footer">12 images&nbsp;&nbsp;&middot;&nbsp;&nbsp;Album by <a href="http://jalbum.net" title="Jalbum, freeware album generator, v8.7.1" class="showhint">Jalbum</a> &amp; <a href="http://lazaworx.com" title="Skin: Turtle White, v1.0" class="showhint">Turtle</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;<a href="javascript:void(0)" class="showhelp">Help</a></div>
+	</div>
+	<div id="images" style="display:none;">
+		<div class="current"></div>
+		<div class="swap"></div>
+		<div class="wait"></div>
+		<div id="navigation">
+			<div id="thumbs">
+				<div id="scroll-left">&nbsp;</div><div id="scroll-right">&nbsp;</div>
+				<div id="thumbcnt"><ul class="thmb" style="width:2280px">
+					<li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li><li><a href="">&nbsp;</a></li>
+				</ul></div>
+			</div>
+			<div id="controls"><ul class="showhint"><li id="prev" title="Previous picture">&nbsp;</li><li id="up" title="Back to splash page">&nbsp;</li><li id="noresize" title="1:1 size">&nbsp;</li><li id="resize" title="Fit to screen">&nbsp;</li><li id="info" title="Show caption / info">&nbsp;</li><li id="noinfo" title="Hide caption / info">&nbsp;</li><li id="index" title="Show thumbnails">&nbsp;</li><li id="noindex" title="Hide thumbnails">&nbsp;</li><li id="play" title="Start autoplay">&nbsp;</li><li id="pause" title="Stop autoplay">&nbsp;</li><li id="next" title="Next picture">&nbsp;</li><div class="clear"></div></ul></div>
+		</div>
+	</div>
+	<div id="help">
+		<div class="window" id="helpsplash"><div class="close"><a href="javascript:void(0)" title="Close window" class="showhint">&nbsp;</a></div><h2>Splash page</h2>
+		<ol><li><b>Up</b> one level <em>Up arrow</em></li><li>Start <b>slideshow</b> <em>Numpad *</em> <em>Space</em></li><li>Subalbums and thumbnails (if exists)</li></ol><p>Press <b>F1</b> at any time to get help!</p></div>
+		<div class="window" id="helpimage"><div class="close"><a href="javascript:void(0)" title="Close window" class="showhint">&nbsp;</a></div><h2>Image page</h2>
+		<ol><li>Thumbnail navigation window</li><li><b>Previous</b> picture <em>Left arrow</em></li><li>$text.help.backtoSplash</li><li>Toggle <b>fit to screen</b> or <b>1:1</b> size <em>Numpad +</em></li><li>Show/hide <b>captions</b> and other info <em>Numpad -</em></li><li>Show/hide <b>thumbnails</b> <em>Numpad -</em></li><li>Start/stop <b>slideshow</b> <em>Numpad *</em> <em>Space</em></li><li><b>Next</b> picture <em>Right arrow</em></li><li><b>Double click the image</b> to switch between <b>fit to window</b> or <b>1:1</b> magnification. You can also <b>drag and move</b> if larger than the screen.</li><li><b>Information window</b>: caption, photo data, map, shopping cart, etc.</li></ol></div>
+	</div>		
+</body>
+</html>
