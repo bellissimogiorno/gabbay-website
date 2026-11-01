@@ -82,8 +82,44 @@
   margin-bottom: 2.5rem;
 }
 
+/* A brief, quiet viewport hint: no heading decoration or layout changes. */
+.viewport-collapse-hint {
+  position: fixed;
+  left: max(0.6rem, env(safe-area-inset-left));
+  bottom: max(0.6rem, env(safe-area-inset-bottom));
+  z-index: 10;
+  max-width: calc(100vw - 1.2rem);
+  padding: 0.15rem 0.3rem;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: var(--paper);
+  color: var(--ink-soft);
+  font-family: var(--modern);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 300ms ease, visibility 0s linear 300ms;
+}
+
+.viewport-collapse-hint[data-visible="true"] {
+  opacity: 1;
+  visibility: visible;
+  transition: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .section-toggle__indicator::after {
+    transition: none;
+  }
+
+  .viewport-collapse-hint {
     transition: none;
   }
 }
@@ -103,5 +139,9 @@
 
   .section-toggle__indicator {
     display: none;
+  }
+
+  .viewport-collapse-hint {
+    display: none !important;
   }
 }

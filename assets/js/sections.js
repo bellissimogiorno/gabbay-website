@@ -4,6 +4,53 @@
   // Keep the source page fully readable without JavaScript. Enhance headings
   // only after all of the elements needed for a section have been found.
   const sections = new Map();
+  let collapseHint = null;
+  let hintHeading = null;
+  let hintTimer = 0;
+
+  const dismissCollapseHint = () => {
+    if (hintTimer) window.clearTimeout(hintTimer);
+    hintTimer = 0;
+    hintHeading = null;
+    if (collapseHint) collapseHint.dataset.visible = "false";
+  };
+
+  const focusedOpenHeading = () => {
+    const focused = document.activeElement;
+    const section = focused?.closest?.("[data-section]");
+    const disclosure = section && sections.get(section.id);
+    if (!disclosure || disclosure.content.hidden) return null;
+    if (focused === disclosure.button || focused === disclosure.button.parentElement) return focused;
+    const topic = focused?.parentElement;
+    if (focused?.tagName === "SUMMARY" && topic?.open &&
+        topic.matches("[data-publication-topic], [data-talk-topic]")) return focused;
+    return null;
+  };
+
+  const refreshCollapseHint = () => {
+    const heading = focusedOpenHeading();
+    if (!heading) {
+      dismissCollapseHint();
+      return;
+    }
+    // Remember expiry until focus changes: incidental toggle events must not
+    // keep bringing back a message the reader has already seen.
+    if (heading === hintHeading) return;
+    dismissCollapseHint();
+    if (!collapseHint) {
+      collapseHint = document.createElement("span");
+      collapseHint.className = "viewport-collapse-hint";
+      collapseHint.textContent = "Click - or press Esc to collapse";
+      collapseHint.setAttribute("aria-hidden", "true");
+      document.body.append(collapseHint);
+    }
+    hintHeading = heading;
+    collapseHint.dataset.visible = "true";
+    hintTimer = window.setTimeout(() => {
+      hintTimer = 0;
+      collapseHint.dataset.visible = "false";
+    }, 1500);
+  };
   // Give a fresh landing page substance, without opening unrelated content
   // ahead of a requested catalogue or deep link. This does not change the URL.
   const initialParameters = new URLSearchParams(window.location.search);
@@ -56,6 +103,7 @@
       content.hidden = !open;
       section.dataset.sectionOpen = String(open);
       button.setAttribute("aria-expanded", String(open));
+      refreshCollapseHint();
     };
     section.dataset.sectionCollapsible = "";
     button.addEventListener("click", () => {
@@ -66,6 +114,16 @@
   });
 
   if (!sections.size) return;
+
+  document.addEventListener("focusin", refreshCollapseHint);
+  document.addEventListener("focusout", dismissCollapseHint);
+  window.addEventListener("blur", dismissCollapseHint);
+  window.addEventListener("pagehide", dismissCollapseHint);
+  document.querySelectorAll("[data-publication-topic], [data-talk-topic]").forEach((group) => {
+    if (!sections.has(group.closest("[data-section]")?.id)) return;
+    group.querySelector("summary")?.setAttribute("aria-keyshortcuts", "Escape");
+    group.addEventListener("toggle", refreshCollapseHint);
+  });
 
   // Collapse only the disclosure that owns keyboard focus, from the inside
   // out. A held Escape must not close a topic and then its whole section.
@@ -85,6 +143,7 @@
     if (details && section.contains(details)) {
       const summary = Array.from(details.children).find((child) => child.tagName === "SUMMARY");
       if (!summary) return;
+      dismissCollapseHint();
       details.open = false;
       summary.focus();
     } else {
