@@ -11,8 +11,8 @@
 .section-toggle {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  justify-content: flex-start;
+  gap: 0.75rem;
   width: 100%;
   min-height: 44px;
   padding: 0;
@@ -29,6 +29,7 @@
 
 .section-toggle:hover {
   color: var(--accent);
+  background: color-mix(in srgb, var(--ink) 4%, transparent);
 }
 
 .section-toggle:focus-visible {
@@ -38,11 +39,11 @@
 
 .section-toggle__indicator {
   position: relative;
-  flex: 0 0 1rem;
-  width: 1rem;
-  height: 1rem;
+  flex: 0 0 1.1rem;
+  width: 1.1rem;
+  height: 1.1rem;
   margin-right: 0.2rem;
-  color: var(--ink-soft);
+  color: var(--ink);
 }
 
 .section-toggle__indicator::before,

@@ -3,12 +3,16 @@
 details > summary.disclosure-summary {
   display: flex !important;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  justify-content: flex-start;
+  gap: 0.75rem;
   padding-inline-end: 0;
   list-style: none !important;
   list-style-type: none !important;
   list-style-image: none !important;
+}
+
+details > summary.disclosure-summary:hover {
+  background: color-mix(in srgb, var(--ink) 4%, transparent);
 }
 
 details > summary.disclosure-summary::marker {
@@ -20,7 +24,7 @@ details > summary.disclosure-summary::-webkit-details-marker {
 }
 
 /* These summaries carry their own explicit, decorative indicator. Suppress
- * the older summary pseudo-elements so there is exactly one right-hand mark. */
+ * the older summary pseudo-elements so there is exactly one mark beside the label. */
 details > summary.disclosure-summary::before,
 details > summary.disclosure-summary::after {
   display: none !important;
@@ -28,15 +32,15 @@ details > summary.disclosure-summary::after {
 }
 
 .disclosure-summary > .disclosure-summary__label {
-  flex: 1 1 auto;
+  flex: 0 1 auto;
   min-width: 0;
 }
 
 .disclosure-summary > .disclosure-indicator {
   position: relative;
-  flex: 0 0 1rem;
-  width: 1rem;
-  height: 1rem;
+  flex: 0 0 1.1rem;
+  width: 1.1rem;
+  height: 1.1rem;
   margin-inline-end: 0.2rem;
   color: var(--ink-soft);
 }
@@ -61,11 +65,16 @@ details[open] > .disclosure-summary > .disclosure-indicator::after {
   transform: rotate(0deg);
 }
 
-/* A small optical increase matches the heavier material links. The original
- * Normal title scale and the links themselves remain unchanged. */
+/* Titles lead the catalogue hierarchy; metadata and resource links keep their
+ * readable body size. Normal retains its existing responsive title scale. */
+.publication__title,
+.talk-entry__title {
+  font-weight: 700;
+}
+
 @media screen {
   [data-catalogue-density="compact"] :is(.publication__title, .talk-entry__title) {
-    font-size: 1.05em;
+    font-size: 1.12em;
     font-weight: 700;
     letter-spacing: 0;
   }

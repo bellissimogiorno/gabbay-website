@@ -90,8 +90,8 @@
 
     if (announce && status) {
       status.textContent = next
-        ? "Section panes assembled into the reading index."
-        : "Returned to the overview grid.";
+        ? "Section navigation moved to the reading index."
+        : "Returned to the overview navigation.";
     }
   };
 

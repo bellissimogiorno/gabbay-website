@@ -4,6 +4,11 @@
   // Keep the source page fully readable without JavaScript. Enhance headings
   // only after all of the elements needed for a section have been found.
   const sections = new Map();
+  // Give a fresh landing page substance, without opening unrelated content
+  // ahead of a requested catalogue or deep link. This does not change the URL.
+  const initialParameters = new URLSearchParams(window.location.search);
+  const overviewArrival = (!window.location.hash || window.location.hash === "#top") &&
+    initialParameters.get("pubs") !== "full" && initialParameters.get("talks") !== "full";
   const ordinaryActivation = (event) =>
     event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey;
 
@@ -55,7 +60,7 @@
     button.addEventListener("click", () => {
       setOpen(content.hidden);
     });
-    setOpen(false);
+    setOpen(overviewArrival && section.id === "research");
     sections.set(section.id, { section, content, button, setOpen });
   });
 

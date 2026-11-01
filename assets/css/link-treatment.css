@@ -1,39 +1,57 @@
-/* Reversible link-style trial. Disable link_style_trial in _config.yml to undo.
- * The important declarations deliberately replace every existing component's
- * link colour, weight, and hover treatment while leaving its layout intact.
+/* Reversible link treatment: disable link_style_trial to use the base styles.
+ * Prose and resources read at their surrounding weight. Underlines identify
+ * links; titles and navigation keep their own structural emphasis.
  */
 html.link-style-trial a[href] {
-  color: var(--accent-dark) !important;
-  font-weight: 700 !important;
-  text-decoration: none !important;
+  color: var(--accent-dark);
+  font-weight: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+  text-decoration-color: color-mix(in srgb, currentColor 60%, transparent);
 }
 
 html.link-style-trial a[href]:hover,
 html.link-style-trial a[href]:focus-visible {
-  color: var(--accent) !important;
-  text-decoration: underline !important;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.18em;
+  color: var(--accent);
+  text-decoration-color: currentColor;
 }
 
-/* Links respond to hover and focus without decorative arrow markers. */
+/* Compact and Normal use the same readable, quiet resource-link treatment. */
+html.link-style-trial :is(
+  .publication__links, .talk-entry__links, .talk-entry__sessions,
+  .section-actions, .accolade__links
+) a[href] {
+  font-weight: 400;
+  font-size: inherit;
+  letter-spacing: 0;
+}
+
+/* The coauthor list is ordinary linked prose, not a second set of headings. */
+html.link-style-trial .publication-coauthors a[href] {
+  font-weight: inherit;
+}
+
+/* Links respond without decorative arrows. */
 html.link-style-trial a[href]::after,
 html.link-style-trial a.topic-card .topic-card__text strong::after,
 html.link-style-trial a.writing-item strong::after {
   content: none;
 }
 
-/* Linked entries underline their title, keeping the description easy to read. */
-html.link-style-trial a.topic-card:is(:hover, :focus-visible),
-html.link-style-trial a.writing-item:is(:hover, :focus-visible) {
-  text-decoration: none !important;
+/* Navigation and linked panels underline their label, not their description. */
+html.link-style-trial a:is(
+  .topic-card, .topic-nav__overview, .writing-item, .catalogue-scope-link,
+  .book-cover
+)[href] {
+  color: var(--ink);
+  text-decoration: none;
 }
 
-html.link-style-trial a.topic-card:is(:hover, :focus-visible) .topic-card__text strong,
-html.link-style-trial a.writing-item:is(:hover, :focus-visible) strong {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.18em;
+html.link-style-trial a:is(.topic-nav__overview, .catalogue-scope-link)[href],
+html.link-style-trial .profile-links a[href],
+html.link-style-trial a.page-return__link[href] {
+  font-weight: 600;
 }
 
 html.link-style-trial a.topic-card .topic-card__text strong,
@@ -42,11 +60,48 @@ html.link-style-trial a.writing-item strong {
   font-weight: 700;
 }
 
-/* Retain the existing keyboard outline and forced-colour link affordance. */
+html.link-style-trial a.topic-card:is(:hover, :focus-visible) .topic-card__text strong,
+html.link-style-trial a.writing-item:is(:hover, :focus-visible) strong,
+html.link-style-trial a:is(.topic-nav__overview, .catalogue-scope-link):is(:hover, :focus-visible) {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+}
+
+/* Heading links inherit the heading's weight and stand apart from resources. */
+html.link-style-trial :is(h1, h2, h3, h4, h5, h6) a[href] {
+  color: inherit;
+  font-weight: inherit;
+}
+
+html.link-style-trial .accolade__work > a[href] {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* Keep the skip link readable on its dark background. */
+html.link-style-trial a.skip-link[href] {
+  color: var(--surface);
+  font-weight: 700;
+}
+
+/* Retain keyboard outlines from the base stylesheet and system link colours. */
 @media (forced-colors: active) {
   html.link-style-trial a[href],
   html.link-style-trial a[href]:hover,
   html.link-style-trial a[href]:focus-visible {
     color: LinkText !important;
+    text-decoration-color: LinkText;
+  }
+
+  html.link-style-trial a.skip-link[href] {
+    background: Canvas;
+  }
+}
+
+@media print {
+  html.link-style-trial a[href] {
+    color: inherit;
+    text-decoration: none;
   }
 }

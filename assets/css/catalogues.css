@@ -199,22 +199,45 @@
   }
 
   [data-catalogue-density="compact"] :is(.publication, .talk-entry) {
-    display: flow-root;
+    /* Align the two text baselines, rather than nudging a floated marker. */
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) fit-content(45%);
+    gap: 0 1rem;
+    align-items: first baseline;
     padding-block: 0.75rem;
   }
 
   [data-catalogue-density="compact"] .entry-marker {
-    float: right;
+    grid-column: 2;
+    grid-row: 1;
+    align-self: first baseline;
+    justify-self: end;
+    float: none;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    align-items: baseline;
     justify-content: flex-end;
     gap: 0.1rem 0.6rem;
     width: auto;
-    max-width: 45%;
-    margin: 0.1rem 0 0.25rem 1rem;
+    max-width: none;
+    margin: 0;
+  }
+
+  [data-catalogue-density="compact"] :is(.entry-marker__type, .entry-marker__year) {
+    align-self: baseline;
+    padding-top: 0;
+  }
+
+  [data-catalogue-density="compact"] .entry-marker__type {
+    flex: 0 1 auto;
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 
   [data-catalogue-density="compact"] :is(.publication__body, .talk-entry__body) {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: first baseline;
     line-height: 1.45;
   }
 
@@ -277,6 +300,11 @@
 }
 
 @media screen and (max-width: 640px) {
+  /* Keep the existing stacked layout when two columns would crowd the title. */
+  [data-catalogue-density="compact"] :is(.publication, .talk-entry) {
+    display: flow-root;
+  }
+
   [data-catalogue-density="compact"] .entry-marker {
     float: none;
     justify-content: flex-start;
