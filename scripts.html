@@ -34,51 +34,61 @@
 
 <main class="page-content" id="main-content">
   <article class="legacy-article scripts-article">
-<figure class="legacy-figure legacy-banner">
-  <a href="https://www.gabbay.org.uk/images/panorama-tortoise.jpg" target="_blank" rel="noopener">
-    <img src="https://www.gabbay.org.uk/images/panorama-tortoise.jpg" alt="Tortoise face" decoding="async">
+  <figure class="legacy-figure legacy-banner">
+  <a href="images/panorama-tortoise.jpg" target="_blank" rel="noopener">
+    <img src="images/panorama-tortoise.jpg" alt="Tortoise face" decoding="async" />
   </a>
 </figure>
 
-<blockquote class="legacy-epigraph">
-  <p>There are 10 kinds of people in the world: those who count in binary and those who don’t.</p>
-</blockquote>
+  <blockquote class="legacy-epigraph">
+    <p>There are 10 kinds of people in the world: those who count in binary and those who don’t.</p>
+  </blockquote>
 
-<p>I mostly use Linux (an operating system) and LaTeX (a professional typesetting language). One of the charming things about these systems is their scripts; short programs to automate and speed up repetitive tasks.</p>
+  <p>I mostly use Linux (an operating system) and LaTeX (a professional typesetting language). One of the
+charming things about these systems is their scripts; short programs to automate and speed up
+repetitive tasks.</p>
 
-<p>The dollar sign $ is not a reference to money, but to the hackers' interactive prompt …​ serving humanity since punched tape went out of fashion. These scripts are provided free under the GPL for your convenience.</p>
+  <p>The dollar sign $ is not a reference to money, but to the hackers' interactive prompt …​ serving
+humanity since punched tape went out of fashion. These scripts are provided free under the GPL for
+your convenience.</p>
 
-<p>I cannot guarantee that this code will do what you expect, nor that this code will not do what you would not expect — like e-mail itself to your friends, wipe your data, blow smoke, and die laughing. Therefore what these scripts do to you, your data, or your material possessions, is your responsibility and not mine.</p>
+  <p>I cannot guarantee that this code will do what you expect, nor that this code will not do what you
+would not expect — like e-mail itself to your friends, wipe your data, blow smoke, and die laughing.
+Therefore what these scripts do to you, your data, or your material possessions, is your
+responsibility and not mine.</p>
 
-<p>If you would like such guarantees to become possible — then fund computer science research.</p>
+  <p>If you would like such guarantees to become possible — then fund computer science research.</p>
 
-<h2 id="convert-for-web">Convert for web</h2>
+  <h2 id="convert-for-web">Convert for web</h2>
 
-<p>Let’s start with something simple. I have used this bash script to convert my photos to 1600x1200 for the web:</p>
+  <p>Let’s start with something simple. I have used this bash script to convert my photos to 1600x1200
+for the web:</p>
 
-<pre><code>for i in *.dir/*[.jpg,.JPG];
+  <pre><code>for i in *.dir/*[.jpg,.JPG];
 do convert -size 1600x1200 $i -resize 1600x1200 -quality 65 $i;
 echo Converted $i;
 done
 chmod -R o+x *.dir
 chmod -R o+R *.dir/*</code></pre>
 
-<h2 id="too-many-math-alphabets-in-latex">Too many math alphabets in LaTeX</h2>
+  <h2 id="too-many-math-alphabets-in-latex">Too many math alphabets in LaTeX</h2>
 
-<p>This annoying error message is explained <a href="https://www.tex.ac.uk/cgi-bin/texfaq2html?label=manymathalph">here</a>. Bottom line: if you’ve got <code>\usepackage{bm}</code> in your preamble, try this:</p>
+  <p>This annoying error message is explained <a href="https://www.tex.ac.uk/cgi-bin/texfaq2html?label=manymathalph">here</a>. Bottom line: if you’ve got
+<code>\usepackage{bm}</code> in your preamble, try this:</p>
 
-<pre><code>%avoid "too many math alphabets" latex error
+  <pre><code>%avoid "too many math alphabets" latex error
 \newcommand\hmmax{0}
 \newcommand\bmmax{0}
 \usepackage{bm}</code></pre>
 
-<h2 id="improve-fonts-in-latex">Improve fonts in LaTeX</h2>
+  <h2 id="improve-fonts-in-latex">Improve fonts in LaTeX</h2>
 
-<p>I recommend using <code>\usepackage{microtype}</code> (even if you are using pdflatex). <a href="https://www.khirevich.com/latex/microtype/">It just makes everything nicer</a>.</p>
+  <p>I recommend using <code>\usepackage{microtype}</code> (even if you are using pdflatex).
+<a href="https://www.khirevich.com/latex/microtype/">It just makes everything nicer</a>.</p>
 
-<p>There are also plenty of nice fonts out there. Here is my fonts preamble:</p>
+  <p>There are also plenty of nice fonts out there. Here is my fonts preamble:</p>
 
-<pre><code>%FONTS
+  <pre><code>%FONTS
 %\usepackage{lmodern}
 \usepackage{microtype}
 %\usepackage{tgadventor}
@@ -114,38 +124,50 @@ chmod -R o+R *.dir/*</code></pre>
 %    together with Starling Burgess and Victor Lardent and
 %    first offered by Monotype).</code></pre>
 
-<p>Sometimes I uncomment a different choice of font and work with it, just for the pleasure of the different atmosphere it lends the paper. Try <code>tgbonum</code> and <code>tgschola</code> for that old-fashioned feel.</p>
+  <p>Sometimes I uncomment a different choice of font and work with it, just for the pleasure of the
+different atmosphere it lends the paper. Try <code>tgbonum</code> and <code>tgschola</code>
+for that old-fashioned feel.</p>
 
-<h2 id="no-margins-in-latex">No margins in LaTeX</h2>
+  <h2 id="no-margins-in-latex">No margins in LaTeX</h2>
 
-<p>Am I the only one to be irritated by small letters and wide margins in documents onscreen?</p>
+  <p>Am I the only one to be irritated by small letters and wide margins in documents onscreen?</p>
 
-<p>I use the <a href="https://www.ctan.org/pkg/geometry">LaTeX geometry package</a> to adjust minimise set to zero and eliminate the margins, thus extirpating that pesky white space around the edges, like so —</p>
+  <p>I use the <a href="https://www.ctan.org/pkg/geometry">LaTeX geometry package</a> to adjust minimise set to zero and eliminate the margins, thus
+extirpating that pesky white space around the edges, like so —</p>
 
-<pre><code>%Small pagesize and no margins = nice big letters onscreen.
+  <pre><code>%Small pagesize and no margins = nice big letters onscreen.
 \usepackage[paperheight=7in,paperwidth=4.7in,margin=.01in]{geometry}</code></pre>
 
-<p>— and the document fits nicely on my desktop screen in dual page mode.</p>
+  <p>— and the document fits nicely on my desktop screen in dual page mode.</p>
 
-<p>Here are example pdf files <a href="https://www.gabbay.org.uk/images/jack-small.pdf">with margins</a> and <a href="https://www.gabbay.org.uk/images/jack-big.pdf">without margins</a>. The text is an excerpt from my brother’s PhD thesis.</p>
+  <p>Here are example pdf files <a href="images/jack-small.pdf">with margins</a> and <a href="images/jack-big.pdf">without margins</a>. The text is an
+excerpt from my brother’s PhD thesis.</p>
 
-<h2 id="read-double-page-spread-on-small-notebook-screen">Read double page spread on small (notebook) screen</h2>
+  <h2 id="read-double-page-spread-on-small-notebook-screen">Read double page spread on small (notebook) screen</h2>
 
-<p>Notebook computers tend to have small screens and (for the moment) relatively low resolutions. Every pixel counts, and every square centimeter too. So people like me, who write academic papers while travelling, will have problems with reading on-screen: modern <q class="literal-quote">"wide aspect ratio"</q> screens are the wrong shape, and the margins may waste precious screen real estate too. Add this to your preamble to get a nice readable double page spread:</p>
+  <p>Notebook computers tend to have small screens and (for the moment) relatively low resolutions. Every
+pixel counts, and every square centimeter too. So people like me, who write academic papers while
+travelling, will have problems with reading on-screen: modern <q class="literal-quote">"wide aspect ratio"</q> screens are
+the wrong shape, and the margins may waste precious screen real estate too. Add this to your
+preamble to get a nice readable double page spread:</p>
 
-<pre><code>\usepackage[height=5.42in,width=3.8in,
+  <pre><code>\usepackage[height=5.42in,width=3.8in,
             paperheight=5.42in,paperwidth=3.8in,
             noheadfoot]{geometry}</code></pre>
 
-<p>The numbers above are good for a 1024x768 (i.e. 4:3) screen; you may wish to adjust the numbers to suit you.</p>
+  <p>The numbers above are good for a 1024x768 (i.e. 4:3) screen; you may wish to adjust the numbers to
+suit you.</p>
 
-<p>Here is an article using the modified page layout and using the default page layout.</p>
+  <p>Here is an article using the modified page layout and using the default page layout.</p>
 
-<h2 id="compact-bibliographies-in-latex">Compact bibliographies in LaTeX</h2>
+  <h2 id="compact-bibliographies-in-latex">Compact bibliographies in LaTeX</h2>
 
-<p>So now you’ve typeset your paper and it’s 16 pages long (one page over the limit) — because of the generous separation between items in the bibliography. The bibliography is not intended for reading as a continuous piece of text, and we should not typeset it as if this were the case. This works like a charm:</p>
+  <p>So now you’ve typeset your paper and it’s 16 pages long (one page over the limit) — because of the
+generous separation between items in the bibliography. The bibliography is not intended for reading
+as a continuous piece of text, and we should not typeset it as if this were the case. This works
+like a charm:</p>
 
-<pre><code>%Compact bibliography, due to Axel Reichert.
+  <pre><code>%Compact bibliography, due to Axel Reichert.
 \let\oldthebibliography=\thebibliography
  \let\endoldthebibliography=\endthebibliography
  \renewenvironment{thebibliography}[1]{ %
@@ -160,13 +182,16 @@ chmod -R o+R *.dir/*</code></pre>
    \end{oldthebibliography} %
  }</code></pre>
 
-<p>More space-saving tricks <a href="https://www-h.eng.cam.ac.uk/help/tpl/textprocessing/squeeze.html">here</a>.</p>
+  <p>More space-saving tricks <a href="https://www-h.eng.cam.ac.uk/help/tpl/textprocessing/squeeze.html">here</a>.</p>
 
-<h2 id="put-draft-on-your-draft-papers-in-latex">Put DRAFT on your draft papers in LaTeX</h2>
+  <h2 id="put-draft-on-your-draft-papers-in-latex">Put DRAFT on your draft papers in LaTeX</h2>
 
-<p>So you want to share a draft pdf with a colleague, but you’re worried about incomplete versions of your paper being leaked? You can use the <code>draftcopy</code> package but that is not compatible with pdflatex. I add this to my LaTeX preamble, to put DRAFT in the background of every page:</p>
+  <p>So you want to share a draft pdf with a colleague, but you’re worried about incomplete versions of
+your paper being leaked? You can use the <code>draftcopy</code> package but that is not
+compatible with pdflatex. I add this to my LaTeX preamble, to put DRAFT in the background of every
+page:</p>
 
-<pre><code>%Put "DRAFT" in the background.  Due to Filox
+  <pre><code>%Put "DRAFT" in the background.  Due to Filox
 \usepackage{graphics} %or \usepackage{graphicx}
 \usepackage{type1cm}
 \usepackage{eso-pic}
@@ -183,17 +208,21 @@ chmod -R o+R *.dir/*</code></pre>
 }
 \makeatother</code></pre>
 
-<p>I got it from <a href="https://filoxus.blogspot.com/2008/01/how-to-insert-watermark-in-latex.html">here</a>; it’s somebody’s blog, and I know nothing whatsoever about them aside from hypothesising that they are a male Croatian science student who has been blogging since November 2007. No, I’m not Sherlock Holmes, I can just <a href="https://www.blogger.com/profile/07052058313681392060">follow a link</a>.</p>
+  <p>I got it from <a href="https://filoxus.blogspot.com/2008/01/how-to-insert-watermark-in-latex.html">here</a>; it’s somebody’s blog, and I know nothing whatsoever about
+them aside from hypothesising that they are a male Croatian science student who has been blogging
+since November 2007. No, I’m not Sherlock Holmes, I can just <a href="https://www.blogger.com/profile/07052058313681392060">follow a link</a>.</p>
 
-<h2 id="lists-in-latex">Lists in LaTeX</h2>
+  <h2 id="lists-in-latex">Lists in LaTeX</h2>
 
-<p>The spacing of lists in LaTeX tends to be a little generous. The <a href="https://ctan.org/pkg/mdwlist"><code>mdwlist</code> package</a> offers compact list environments <code>enumerate*</code> and <code>itemize*</code>. On this topic you might also like the <a href="https://ctan.org/pkg/paralist"><code>paralist</code> package</a>.</p>
+  <p>The spacing of lists in LaTeX tends to be a little generous. The <a href="https://ctan.org/pkg/mdwlist"><code>mdwlist</code> package</a> offers
+compact list environments <code>enumerate*</code> and <code>itemize*</code>. On this topic you
+might also like the <a href="https://ctan.org/pkg/paralist"><code>paralist</code> package</a>.</p>
 
-<h2 id="rounded-boxes-in-latex">Rounded boxes in LaTeX</h2>
+  <h2 id="rounded-boxes-in-latex">Rounded boxes in LaTeX</h2>
 
-<p>So you want to emphasise parts of some equation by putting them in nice rounded boxes, like this:</p>
+  <p>So you want to emphasise parts of some equation by putting them in nice rounded boxes, like this:</p>
 
-<pre><code>\usepackage{etex} %avoid error messages from tikz due to bug
+  <pre><code>\usepackage{etex} %avoid error messages from tikz due to bug
 \usepackage{tikz}
 \definecolor{shade}{HTML}{F4F4FF}%light blue shade
 \newcommand\shademath[1]
@@ -204,21 +233,23 @@ chmod -R o+R *.dir/*</code></pre>
 \end{tikzpicture}}
 }</code></pre>
 
-<p>Then using the <code>shademath</code> command you can can get this:</p>
+  <p>Then using the <code>shademath</code> command you can can get this:</p>
 
-<figure class="legacy-figure">
-  <a href="https://www.gabbay.org.uk/images/rounded-border-box.png" target="_blank" rel="noopener">
-    <img src="https://www.gabbay.org.uk/images/rounded-border-box.png" alt="With shademath" decoding="async">
+  <figure class="legacy-figure">
+  <a href="images/rounded-border-box.png" target="_blank" rel="noopener">
+    <img src="images/rounded-border-box.png" alt="With shademath" decoding="async" />
   </a>
 </figure>
 
-<p>I adapted this from <a href="https://www.cv-templates.info/2009/07/wrapping-text-in-rounded-corners-colorbox-in-latex-with-tikz-and-pgf/">here</a>.</p>
+  <p>I adapted this from <a href="https://www.cv-templates.info/2009/07/wrapping-text-in-rounded-corners-colorbox-in-latex-with-tikz-and-pgf/">here</a>.</p>
 
-<h2 id="align-equations-in-latex-across-multiple-lines-of-text">Align equations in LaTeX across multiple lines of text</h2>
+  <h2 id="align-equations-in-latex-across-multiple-lines-of-text">Align equations in LaTeX across multiple lines of text</h2>
 
-<p>This has been a real bugbear for me. You want equations separated by lines or paragraphs of text, to line up. In certain circumstances you can use <a href="https://www.tex.ac.uk/cgi-bin/texfaq2html?label=mathstext">intertext</a>, but that’s far from perfect. Here’s what I came up with:</p>
+  <p>This has been a real bugbear for me. You want equations separated by lines or paragraphs of text, to
+line up. In certain circumstances you can use <a href="https://www.tex.ac.uk/cgi-bin/texfaq2html?label=mathstext">intertext</a>, but that’s far from
+perfect. Here’s what I came up with:</p>
 
-<pre><code>%in preamble
+  <pre><code>%in preamble
 \usepackage{array}
 \newcolumntype{L}[1]{&gt;{$}p{#1}&lt;{$}}
 \newcolumntype{C}[1]{&gt;{\centering$}p{#1}&lt;{$}}
@@ -242,21 +273,26 @@ f([a]b,  Z,  X) = f([d]b,  [a]a,  Y) &amp; \Longrightarrow
 &amp; [a]b = [d]b,\  Z = [a]a,\  X = Y
 \end{tab4}</code></pre>
 
-<p>You get this perfectly aligned pair of equations:</p>
+  <p>You get this perfectly aligned pair of equations:</p>
 
-<figure class="legacy-figure">
-  <a href="https://www.gabbay.org.uk/images/justify-equations.png" target="_blank" rel="noopener">
-    <img src="https://www.gabbay.org.uk/images/justify-equations.png" alt="Perfectly aligned pair of equations" decoding="async">
+  <figure class="legacy-figure">
+  <a href="images/justify-equations.png" target="_blank" rel="noopener">
+    <img src="images/justify-equations.png" alt="Perfectly aligned pair of equations" decoding="async" />
   </a>
 </figure>
 
-<h2 id="latex-consecutive-numbering-theorems-lemmas">LaTeX consecutive numbering theorems &amp; lemmas</h2>
+  <h2 id="latex-consecutive-numbering-theorems-lemmas">LaTeX consecutive numbering theorems &amp; lemmas</h2>
 
-<p>Many publishers' style files number Theorems, Lemmas, Remarks, and so on distinctly; so you can have Theorem 1, Remark 1, Lemma 1, Lemma 2, Lemma 3, Remark 3, Theorem 2, Corollary 1, etcetera. It’s dreadful.</p>
+  <p>Many publishers' style files number Theorems, Lemmas, Remarks, and so on distinctly; so you can
+have Theorem 1, Remark 1, Lemma 1, Lemma 2, Lemma 3, Remark 3, Theorem 2, Corollary 1, etcetera.
+It’s dreadful.</p>
 
-<p>How to fix this elegantly depends on whether you are using llncs or ams class files (the two classes on which most other class files are based, at least in my area of research). Here is some LaTeX you can drop into place to give you nice, well-typeset, consecutively numbered theorems and lemmas. I have this at the head of most of my papers:</p>
+  <p>How to fix this elegantly depends on whether you are using llncs or ams class files (the two classes
+on which most other class files are based, at least in my area of research). Here is some LaTeX you
+can drop into place to give you nice, well-typeset, consecutively numbered theorems and lemmas. I
+have this at the head of most of my papers:</p>
 
-<pre><code>%for llncs
+  <pre><code>%for llncs
 \spnewtheorem{thrm}{Theorem}[section]{\sc }{\itshape}
 \spnewtheorem{lemm}[thrm]{Lemma}{\sc }{\itshape}
 \spnewtheorem{prop}[thrm]{Proposition}{\sc }{\itshape}
@@ -266,9 +302,9 @@ f([a]b,  Z,  X) = f([d]b,  [a]a,  Y) &amp; \Longrightarrow
 \spnewtheorem{xmpl}[thrm]{Example}{\sc }{}
 \spnewtheorem{rmrk}[thrm]{Remark}{\sc }{}</code></pre>
 
-<p>Or this:</p>
+  <p>Or this:</p>
 
-<pre><code>%for amsthm
+  <pre><code>%for amsthm
 \newtheoremstyle{jamiestyle}% name of the style to be used
   {4pt}% measure of space to leave above the theorem. E.g.: 3pt
   {0pt}% measure of space to leave below the theorem. E.g.: 3pt
@@ -298,97 +334,111 @@ f([a]b,  Z,  X) = f([d]b,  [a]a,  Y) &amp; \Longrightarrow
 \newtheorem{xmpl}[thrm]{Example}
 \newtheorem{rmrk}[thrm]{Remark}</code></pre>
 
-<h2 id="make-bootup-disk">Make bootup disk</h2>
+  <h2 id="make-bootup-disk">Make bootup disk</h2>
 
-<p>Suppose you’re in Linux and you want to create a bootable live USB from an image file. You could use graphical tools like <a href="https://unetbootin.github.io/">unetbootin</a> or <a href="https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-ubuntu">startup disk creator</a>.</p>
+  <p>Suppose you’re in Linux and you want to create a bootable live USB from an image file. You could use
+graphical tools like <a href="https://unetbootin.github.io/">unetbootin</a> or <a href="https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-ubuntu">startup disk creator</a>.</p>
 
-<p>Or you could type this:</p>
+  <p>Or you could type this:</p>
 
-<pre><code>sudo dd bs=4M \
+  <pre><code>sudo dd bs=4M \
 if=[path to your image file, e.g. linuxmint-19-cinnamon-64bit-beta.iso] \
 of=[path to your device, e.g. /dev/sdg] \
 conv=fdatasync</code></pre>
 
-<p>You can determine the path to your device by typing <code>lsblk</code>.</p>
+  <p>You can determine the path to your device by typing <code>lsblk</code>.</p>
 
-<p>Warning: <code>dd</code> is a low-level command which will write almost anything to almost anything. It is easy to get the device name wrong. For instance, if you accidentally ask <code>dd</code> to overwrite your root directory (that is, if you ask <code>dd</code> to wipe your OS) …​ then it will.</p>
+  <p>Warning: <code>dd</code> is a low-level command which will write almost anything to almost
+anything. It is easy to get the device name wrong. For instance, if you accidentally ask
+<code>dd</code> to overwrite your root directory (that is, if you ask
+<code>dd</code> to wipe your OS) …​ then it will.</p>
 
-<h2 id="linux-remote-proxy">Linux remote proxy</h2>
+  <h2 id="linux-remote-proxy">Linux remote proxy</h2>
 
-<p>Suppose you’re in Linux and you want to browse the internet using another machine as a proxy. Easy!</p>
+  <p>Suppose you’re in Linux and you want to browse the internet using another machine as a proxy. Easy!</p>
 
-<pre><code>ssh -C2qTnN -D 8080 username@hostname
+  <pre><code>ssh -C2qTnN -D 8080 username@hostname
 chromium-browser --proxy-server="socks5://localhost:8080"</code></pre>
 
-<p>Happy browsing.</p>
+  <p>Happy browsing.</p>
 
-<p>Suppose you want to be able to ssh to machine A from machine B, even though machine A is behind a firewall and you don’t have direct access? This is called reverse ssh tunneling and is also easy!</p>
+  <p>Suppose you want to be able to ssh to machine A from machine B, even though machine A is behind a
+firewall and you don’t have direct access? This is called reverse ssh tunneling and is also easy!</p>
 
-<pre><code>! On host A type:
+  <pre><code>! On host A type:
 ssh -R 19998:localhost:22 username@Bhostname
 ! Then on host B type:
 slogin localhost -p 19998</code></pre>
 
-<h2 id="make-passwords">Make passwords</h2>
+  <h2 id="make-passwords">Make passwords</h2>
 
-<p>Suppose you’re in Linux and you want to generate a password. Here we go:</p>
+  <p>Suppose you’re in Linux and you want to generate a password. Here we go:</p>
 
-<pre><code>dd if=/dev/urandom bs=1 count=15|base64 -w 0</code></pre>
+  <pre><code>dd if=/dev/urandom bs=1 count=15|base64 -w 0</code></pre>
 
-<p>If that’s too easy for you, try <code>mkpasswd.pl</code>, <code>pwgen</code>, or <code>xkcdpass</code>. To install on Debian type <code>sudo apt-get install libstring-mkpasswd-perl pwgen xkcdpass</code>. <a href="https://kerneltalks.com/tips-tricks/8-ways-to-generate-random-password-in-linux/">More on this topic.</a></p>
+  <p>If that’s too easy for you, try <code>mkpasswd.pl</code>, <code>pwgen</code>, or
+<code>xkcdpass</code>. To install on Debian type <code>sudo apt-get install libstring-mkpasswd-perl pwgen xkcdpass</code>.
+<a href="https://kerneltalks.com/tips-tricks/8-ways-to-generate-random-password-in-linux/">More on this topic.</a></p>
 
-<h2 id="download-from-youtube">Download from Youtube</h2>
+  <h2 id="download-from-youtube">Download from Youtube</h2>
 
-<p>Here’s a useful command to download the best available audio and video and combine them:</p>
+  <p>Here’s a useful command to download the best available audio and video and combine them:</p>
 
-<pre><code>youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' \
+  <pre><code>youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' \
 --merge-output-format mp4 "https://www.youtube.com/watch?v=DOWO4gq-whg"</code></pre>
 
-<p>I might have made this the default. Anyway, more information <a href="https://github.com/ytdl-org/youtube-dl">here</a>.</p>
+  <p>I might have made this the default. Anyway, more information <a href="https://github.com/ytdl-org/youtube-dl">here</a>.</p>
 
-<h2 id="fail2ban">fail2ban</h2>
+  <h2 id="fail2ban">fail2ban</h2>
 
-<p>A very useful program which stops brute-force password attacks. Install on Debian using</p>
+  <p>A very useful program which stops brute-force password attacks. Install on Debian using</p>
 
-<pre><code>sudo apt-get install fail2ban</code></pre>
+  <pre><code>sudo apt-get install fail2ban</code></pre>
 
-<p>Then, when you accidentally ban yourself, unban the relevant IP address by typing</p>
+  <p>Then, when you accidentally ban yourself, unban the relevant IP address by typing</p>
 
-<pre><code>sudo fail2ban-client set sshd unbanip [whatever your ip address is]</code></pre>
+  <pre><code>sudo fail2ban-client set sshd unbanip [whatever your ip address is]</code></pre>
 
-<h2 id="auto-indent-in-vim">Auto-indent in vim</h2>
+  <h2 id="auto-indent-in-vim">Auto-indent in vim</h2>
 
-<p>So you want to indent your code in vim? First, get set up (or put this, minus the leading <code>:</code>, in your <code>.vimrc</code> file):</p>
+  <p>So you want to indent your code in vim? First, get set up (or put this, minus the leading
+<code>:</code>, in your <code>.vimrc</code> file):</p>
 
-<pre><code>:filetype indent on
+  <pre><code>:filetype indent on
 :set filetype=html           # abbrev -  :set ft=html
 :set smartindent             # abbrev -  :set si
 :set shiftwidth=2</code></pre>
 
-<p>Then select the text to indent and type <code>=</code>, or move the cursor to the top of the file and type <code>gg =G</code>.</p>
+  <p>Then select the text to indent and type <code>=</code>, or move the cursor to the top of
+the file and type <code>gg =G</code>.</p>
 
-<p>I got this from <a href="https://stackoverflow.com/questions/815548/how-do-i-tidy-up-an-html-files-indentation-in-vi">this question on StackOverflow</a>.</p>
+  <p>I got this from <a href="https://stackoverflow.com/questions/815548/how-do-i-tidy-up-an-html-files-indentation-in-vi">this question on StackOverflow</a>.</p>
 
-<h2 id="set-permissions-in-linux">Set permissions in Linux</h2>
+  <h2 id="set-permissions-in-linux">Set permissions in Linux</h2>
 
-<p>Sometimes your permissions get corrupted. You can restore sane values like this:</p>
+  <p>Sometimes your permissions get corrupted. You can restore sane values like this:</p>
 
-<pre><code>find . -type d -exec chmod a+rwx {} \; # Folders traversable and read/write
+  <pre><code>find . -type d -exec chmod a+rwx {} \; # Folders traversable and read/write
 find . -type f -exec chmod a+rw {} \;  # Files read/write</code></pre>
 
-<p>From <a href="https://stackoverflow.com/questions/1580596/how-do-i-make-git-ignore-file-mode-chmod-changes">here</a>.</p>
+  <p>From <a href="https://stackoverflow.com/questions/1580596/how-do-i-make-git-ignore-file-mode-chmod-changes">here</a>.</p>
 
-<h2 id="convert-pdf-to-djvu">Convert pdf to djvu</h2>
+  <h2 id="convert-pdf-to-djvu">Convert pdf to djvu</h2>
 
-<p>Djvu (pronounced <q class="literal-quote">‘dejaview’</q>) is a document format which is more compact and faster to view than pdf. Converting pdf to djvu used to be difficult, so I developed a script adapted from pdfs2djvu which uses code kindly supplied by Sebastien Carlier.</p>
+  <p>Djvu (pronounced <q class="literal-quote">‘dejaview’</q>) is a document format which is more compact and faster to
+view than pdf. Converting pdf to djvu used to be difficult, so I developed a script adapted from
+pdfs2djvu which uses code kindly supplied by Sebastien Carlier.</p>
 
-<p><a href="https://www.gabbay.org.uk/scripts/pdftodjvu">Click here to download the pdftodjvu script</a></p>
+  <p><a href="scripts/pdftodjvu">Click here to download the pdftodjvu script</a></p>
 
-<p>I include it for completeness; you might be better off using the better-written <code>pdf2djvu</code> package. If you use Debian you can install it by typing <code>sudo apt-get install pdf2djvu</code>.</p>
+  <p>I include it for completeness; you might be better off using the better-written
+<code>pdf2djvu</code> package. If you use Debian you can install it by typing
+<code>sudo apt-get install pdf2djvu</code>.</p>
 
-<h2 id="upgrading-from-end-of-life-ubuntu-releases">Upgrading from end-of-life Ubuntu releases</h2>
+  <h2 id="upgrading-from-end-of-life-ubuntu-releases">Upgrading from end-of-life Ubuntu releases</h2>
 
-<p>It is quite easy to get stranded on a non-LTS Ubuntu release, if the next (intermediate) release up gets moved to <q class="literal-quote">"End of Life"</q>. See this excellent guide on <a href="https://tips.graphica.com.au/upgrading-from-retired-ubuntu-releases/">how to upgrade anyway</a>.</p>
+  <p>It is quite easy to get stranded on a non-LTS Ubuntu release, if the next (intermediate) release up
+gets moved to <q class="literal-quote">"End of Life"</q>. See this excellent guide on <a href="https://tips.graphica.com.au/upgrading-from-retired-ubuntu-releases/">how to upgrade anyway</a>.</p>
 </article>
 
 </main>
@@ -405,5 +455,14 @@ find . -type f -exec chmod a+rw {} \;  # Files read/write</code></pre>
     <script src="assets/js/media.js" defer></script>
     
     
-  </body>
+  <!-- Start of StatCounter Code -->
+<script type="text/javascript">
+var sc_project=6631121;
+var sc_invisible=1;
+var sc_security="dfac9883";
+var sc_download_type="7z|tgz|aac|avi|csv|doc|exe|flv|gif|gz|jpe?g|js|mp(3|4|e?g)|mov|msi|pdf|phps|png|ppt|rar|sit|tar|torrent|txt|wma|wmv|xls|xml|zip";
+</script>
+<script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+<noscript><div class="statcounter"><a title="custom counter" href="https://statcounter.com/free_hit_counter.html" target="_blank"><img class="statcounter" src="https://c.statcounter.com/6631121/0/dfac9883/1/" alt="custom counter"></a></div></noscript>
+<!-- End of StatCounter Code --></body>
 </html>

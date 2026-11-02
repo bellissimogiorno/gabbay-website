@@ -67,10 +67,7 @@
   max-width: 100%;
 }
 
-.quantifier-result .quantifier-typeset-output {
-  display: none;
-}
-
+.quantifier-result .quantifier-typeset-output,
 .quantifier-result .media-unavailable .media-fallback {
   display: none;
 }

@@ -45,6 +45,8 @@ details > summary.disclosure-summary::after {
   color: var(--ink-soft);
 }
 
+/* Deliberately repeat the section-toggle bar geometry. Keeping it here
+ * preserves this stylesheet's independence from cached component/main CSS. */
 .disclosure-indicator::before,
 .disclosure-indicator::after {
   position: absolute;

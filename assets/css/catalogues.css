@@ -193,7 +193,8 @@
 }
 
 /* Compact keeps complete titles, key metadata and material links. Original
-   detailed metadata and author prose remain available in Normal and print. */
+   detailed metadata and author prose remain available in Normal and print.
+   Keep the 1em title size as a component fallback if final UI CSS is unavailable. */
 @media screen {
   [data-catalogue-density="compact"] :is(.publication__title, .talk-entry__title) {
     font-size: 1em;

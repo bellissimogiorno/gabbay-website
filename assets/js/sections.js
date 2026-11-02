@@ -66,7 +66,8 @@
     const heading = header?.querySelector("h2");
     if (!inner || !header || !heading || !section.id || !heading.id) return;
 
-    const following = Array.from(inner.childNodes).slice(Array.from(inner.childNodes).indexOf(header) + 1);
+    const innerChildren = Array.from(inner.childNodes);
+    const following = innerChildren.slice(innerChildren.indexOf(header) + 1);
     const introductions = Array.from(header.querySelectorAll(".section-heading__introduction"));
     const dialogs = Array.from(inner.querySelectorAll("dialog"));
     const content = document.createElement("div");

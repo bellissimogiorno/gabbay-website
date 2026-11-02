@@ -60,7 +60,9 @@
       const distance = Math.hypot(deltaX, deltaY);
       if (distance < 2) return;
 
-      link.getAnimations().forEach((animation) => animation.cancel());
+      if (typeof link.getAnimations === "function") {
+        link.getAnimations().forEach((animation) => animation.cancel());
+      }
       link.animate(
         [
           {
@@ -123,6 +125,12 @@
     });
 
     revealActiveLink(id);
+  };
+
+  // Overview, dismissal and history restoration clear the same navigation state.
+  const clearActiveSection = () => {
+    activeSection = "";
+    sectionLinks.forEach((link) => link.removeAttribute("aria-current"));
   };
 
   const updateActiveFromScroll = () => {
@@ -201,8 +209,7 @@
   const collapseAtPageTop = () => {
     cancelPendingFocus();
     setExploring(false, { announce: false });
-    activeSection = "";
-    sectionLinks.forEach((link) => link.removeAttribute("aria-current"));
+    clearActiveSection();
     replaceWithOverviewLocation();
     window.dispatchEvent(new CustomEvent("site:overview"));
     if (status) status.textContent = "Returned to the overview grid at the top of the page.";
@@ -237,12 +244,11 @@
     });
   };
 
-  const returnToOverview = ({ updateHistory = true, focus = false } = {}) => {
+  const returnToOverview = ({ focus = false } = {}) => {
     cancelPendingFocus();
     setExploring(false, { animate: false });
-    activeSection = "";
-    sectionLinks.forEach((link) => link.removeAttribute("aria-current"));
-    if (updateHistory) pushLocation("");
+    clearActiveSection();
+    pushLocation("");
     window.dispatchEvent(new CustomEvent("site:overview"));
 
     window.requestAnimationFrame(() => {
@@ -262,8 +268,7 @@
 
     cancelPendingFocus();
     setExploring(false, { animate: false, announce: false });
-    activeSection = "";
-    sectionLinks.forEach((link) => link.removeAttribute("aria-current"));
+    clearActiveSection();
 
     /*
      * Restoring the overview puts its eight-pane grid back into document flow.
@@ -337,8 +342,7 @@
       }
     } else if (!id || id === "top") {
       setExploring(false, { animate: false, announce: false });
-      activeSection = "";
-      sectionLinks.forEach((link) => link.removeAttribute("aria-current"));
+      clearActiveSection();
       if (scroll) {
         window.requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: "auto" }));
       }

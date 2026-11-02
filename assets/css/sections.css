@@ -46,6 +46,8 @@
   color: var(--ink);
 }
 
+/* Keep this geometry local: native topic indicators intentionally repeat it
+ * so independently cached component styles never depend on a newer main.css. */
 .section-toggle__indicator::before,
 .section-toggle__indicator::after {
   position: absolute;
