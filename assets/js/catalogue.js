@@ -231,57 +231,68 @@
       installKeyboardNavigation(tablist, tabs);
     };
 
-    // Build alternate views from the canonical nodes, retaining stable ties.
-    // Ignore opening punctuation and an initial article for alphabetical order.
-    // The displayed titles are unchanged.
-    const titleKey = (item) =>
-      itemValue(item, dataName("Title"))
+    // Catalogue metadata is fixed by the server-rendered source. Read and
+    // normalize it lazily once per item, rather than for every sort comparison
+    // and every later view change. The displayed text and live nodes are kept.
+    const metadata = new WeakMap();
+    const itemMetadata = (item) => {
+      const cached = metadata.get(item);
+      if (cached) return cached;
+      const title = itemValue(item, dataName("Title"))
         .replace(/^[^\p{L}\p{N}]+/u, "")
         .replace(/^(a|an|the)\s+/i, "")
         .replace(/^[^\p{L}\p{N}]+/u, "")
         .trim();
-
-    const itemTimestamp = (item) => {
       const rawDate = itemValue(item, dataName("Date"));
       const rawYear = itemValue(item, dataName("Year"));
+      let timestamp;
       if (/forthcoming|in press/i.test(`${rawDate} ${rawYear}`)) {
-        return Number.MAX_SAFE_INTEGER;
+        timestamp = Number.MAX_SAFE_INTEGER;
+      } else {
+        const parsedDate = Date.parse(rawDate);
+        const parsedYear = Number.parseInt(rawYear, 10);
+        timestamp = Number.isFinite(parsedDate) ? parsedDate
+          : Number.isFinite(parsedYear) ? Date.UTC(parsedYear, 0, 1) : Number.MIN_SAFE_INTEGER;
       }
-
-      const parsedDate = Date.parse(rawDate);
-      if (Number.isFinite(parsedDate)) return parsedDate;
-
-      const parsedYear = Number.parseInt(rawYear, 10);
-      return Number.isFinite(parsedYear) ? Date.UTC(parsedYear, 0, 1) : Number.MIN_SAFE_INTEGER;
+      const value = {
+        title, timestamp,
+        date: rawYear || "Forthcoming and undated",
+        topic: itemValue(item, dataName("Topic")) || "Other",
+        type: itemValue(item, dataName("Type")) || "Other",
+      };
+      metadata.set(item, value);
+      return value;
     };
 
-    const compareTitles = (left, right) => collator.compare(titleKey(left), titleKey(right));
+    const compareTitles = (left, right) => collator.compare(itemMetadata(left).title, itemMetadata(right).title);
 
     const compareDates = (left, right) => {
-      const difference = itemTimestamp(right) - itemTimestamp(left);
+      const difference = itemMetadata(right).timestamp - itemMetadata(left).timestamp;
       return difference || originalOrder.get(left) - originalOrder.get(right);
     };
 
     const groupValue = (item, view) => {
-      if (view === "date") {
-        return itemValue(item, dataName("Year")) || "Forthcoming and undated";
-      }
-      if (view === "topic") return itemValue(item, dataName("Topic")) || "Other";
-      if (view === "type") return itemValue(item, dataName("Type")) || "Other";
+      const value = itemMetadata(item);
+      if (view !== "title") return value[view];
 
-      const firstCharacter = titleKey(item).match(/[A-Z]/i)?.[0];
+      const firstCharacter = value.title.match(/[A-Z]/i)?.[0];
       return firstCharacter ? firstCharacter.toUpperCase() : "0–9";
     };
 
+    const sortedViews = new Map();
     const sortedItems = (view) => {
+      if (sortedViews.has(view)) return sortedViews.get(view);
       const items = [...catalogueItems];
-      if (view === "title") return items.sort(compareTitles);
-      if (view === "date") return items.sort(compareDates);
-
-      return items.sort((left, right) => {
-        const groupDifference = collator.compare(groupValue(left, view), groupValue(right, view));
-        return groupDifference || compareDates(left, right);
-      });
+      if (view === "title") items.sort(compareTitles);
+      else if (view === "date") items.sort(compareDates);
+      else {
+        items.sort((left, right) => {
+          const groupDifference = collator.compare(groupValue(left, view), groupValue(right, view));
+          return groupDifference || compareDates(left, right);
+        });
+      }
+      sortedViews.set(view, items);
+      return items;
     };
 
     const slug = (value) => {

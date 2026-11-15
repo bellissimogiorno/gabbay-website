@@ -148,30 +148,24 @@
     const target = eventElement(event);
     const panel = target?.closest(panelSelector);
     const interactive = isInteractive(target, panel);
-    const startedOnText =
-      event.pointerType === "mouse" &&
-      panel &&
-      !interactive &&
-      pointIsOnSelectableText(panel, event.clientX, event.clientY);
+    press = null;
+    // Range geometry and computed styles are needed only for a gesture that
+    // could activate this panel; selection, right-clicks and drags stay cheap.
+    if (event.button !== 0 || !event.isPrimary ||
+        (event.pointerType === "mouse" && !(event.detail <= 1)) ||
+        !panel || interactive || selectionTouches(panel)) return;
 
-    press =
-      event.button === 0 &&
-      event.isPrimary &&
-      (event.pointerType !== "mouse" || event.detail <= 1) &&
-      panel &&
-      !interactive &&
-      !selectionTouches(panel)
-        ? {
-            panel,
-            pointerId: event.pointerId,
-            pointerType: event.pointerType,
-            x: event.clientX,
-            y: event.clientY,
-            maxDistance: 0,
-            released: false,
-            onText: startedOnText,
-          }
-        : null;
+    press = {
+      panel,
+      pointerId: event.pointerId,
+      pointerType: event.pointerType,
+      x: event.clientX,
+      y: event.clientY,
+      maxDistance: 0,
+      released: false,
+      onText: event.pointerType === "mouse" &&
+        pointIsOnSelectableText(panel, event.clientX, event.clientY),
+    };
   }, true);
 
   document.addEventListener("pointermove", updateMovement, true);
@@ -184,12 +178,6 @@
     const target = eventElement(event);
     const panel = target?.closest(panelSelector);
     const interactive = isInteractive(target, press.panel);
-    const releasedOnText =
-      press.pointerType === "mouse" &&
-      !interactive &&
-      pointIsOnSelectableText(press.panel, event.clientX, event.clientY);
-    press.onText ||= releasedOnText;
-
     if (
       event.button !== 0 ||
       panel !== press.panel ||
@@ -200,6 +188,9 @@
       return;
     }
 
+    if (press.pointerType === "mouse" && !press.onText) {
+      press.onText = pointIsOnSelectableText(press.panel, event.clientX, event.clientY);
+    }
     press.released = true;
   }, true);
 
