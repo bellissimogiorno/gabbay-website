@@ -93,6 +93,25 @@
   margin: 0;
 }
 
+/* The generated paper code is real, selectable text. It sits below the
+   existing type/year marker without competing with the publication title. */
+.publication__code {
+  display: block;
+  flex: none;
+  align-self: stretch;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  color: #72837f;
+  color: color-mix(in srgb, var(--vertical-marker) 75%, white);
+  font-size: 0.70em;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.35;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
 [data-catalogue-density] .catalogue-compact-metadata cite,
 [data-catalogue-density] .catalogue-compact-metadata cite a[href] {
   font: inherit;
@@ -225,6 +244,37 @@
     margin: 0;
   }
 
+  [data-catalogue-density="compact"] .publication__marker {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto auto;
+    flex-wrap: wrap;
+    justify-items: end;
+    text-align: right;
+  }
+
+  /* Place every item explicitly: the code belongs beneath both metadata
+     cells, never in an implicit third column beside the year. */
+  [data-catalogue-density="compact"] .publication__marker > .publication__type {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: end;
+  }
+
+  [data-catalogue-density="compact"] .publication__marker > .publication__year {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+  }
+
+  [data-catalogue-density="compact"] .publication__marker > .publication__code {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: end;
+    flex-basis: 100%;
+    text-align: right;
+  }
+
   [data-catalogue-density="compact"] :is(.entry-marker__type, .entry-marker__year) {
     align-self: baseline;
     padding-top: 0;
@@ -313,9 +363,18 @@
     max-width: 100%;
     margin: 0 0 0.3rem;
   }
+
+  [data-catalogue-density="compact"] .publication__marker {
+    width: fit-content;
+    margin-inline-start: auto;
+    justify-content: end;
+  }
 }
 
 @media (forced-colors: active) {
+  .publication__code {
+    color: CanvasText;
+  }
   .catalogue-density__option input:checked + span {
     background: Highlight;
     color: HighlightText;
@@ -334,6 +393,10 @@
 }
 
 @media print {
+  .publication__code {
+    color: inherit;
+  }
+
   /* Print the complete canonical catalogue once, even when Topic is selected.
      Topic replicas and Selected lists must not duplicate the same records. */
   [data-publication-scope-panel="selected"],

@@ -191,27 +191,12 @@
     focusTimer = 0;
   };
 
-  const replaceWithOverviewLocation = () => {
-    const url = new URL(window.location.href);
-    url.searchParams.delete("pubs");
-    url.searchParams.delete("pubs-by");
-    url.searchParams.delete("talks");
-    url.searchParams.delete("talks-by");
-    url.hash = "";
-    const nextLocation = `${url.pathname}${url.search}`;
-    const priorState =
-      window.history.state && typeof window.history.state === "object"
-        ? window.history.state
-        : {};
-    window.history.replaceState({ ...priorState, section: null }, "", nextLocation);
-  };
-
   const collapseAtPageTop = () => {
     cancelPendingFocus();
     setExploring(false, { announce: false });
     clearActiveSection();
-    replaceWithOverviewLocation();
-    window.dispatchEvent(new CustomEvent("site:overview"));
+    // Scrolling, including native Find, changes navigation presentation only.
+    // Catalogue scope, grouping and history belong to explicit user actions.
     if (status) status.textContent = "Returned to the overview grid at the top of the page.";
   };
 
