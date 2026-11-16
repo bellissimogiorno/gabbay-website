@@ -41,6 +41,8 @@
       catalogueItems.map((item, index) => [item, index]),
     );
     const itemCount = catalogue.querySelector(selector("count"));
+    const densityControls = catalogue.querySelector("[data-catalogue-density-controls]");
+    let toolbar = null;
 
     if (
       !fallbackNavigation ||
@@ -393,6 +395,7 @@
       if (!itemCount) return;
       const noun = catalogueItems.length === 1 ? "item" : "items";
       itemCount.textContent = `${catalogueItems.length} ${noun}, arranged by ${state.view}.`;
+      if (toolbar) itemCount.hidden = state.scope !== "full";
     };
 
     // Apply DOM changes transactionally before committing URL/history state.
@@ -508,6 +511,7 @@
     // Failed enhancement restores ordinary readable server-rendered lists.
     const restoreFallback = () => {
       renderView("date");
+      if (itemCount) itemCount.hidden = false;
       fallbackNavigation.hidden = false;
       scopeTablist.hidden = true;
       viewTablist.hidden = true;
@@ -553,6 +557,15 @@
       fallbackNavigation.hidden = true;
       scopeTablist.hidden = false;
       viewTablist.hidden = false;
+      if (itemCount && densityControls) {
+        // Reuse the existing live count and radio group, including their state
+        // and listeners. The server-rendered fallback needs no extra markup.
+        toolbar = document.createElement("div");
+        toolbar.className = "catalogue-toolbar";
+        catalogue.insertBefore(toolbar, scopeTablist.nextSibling);
+        toolbar.append(itemCount, densityControls);
+        updateCount();
+      }
       catalogue.dataset.enhanced = "true";
     } catch (error) {
       restoreFallback();
