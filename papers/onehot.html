@@ -54,7 +54,7 @@
 [hidden]:not([hidden="until-found"]) { display: none !important; }
 html { scroll-padding-top: 1.5rem; }
 body { margin: 0; background: var(--paper); color: var(--ink); font-family: Georgia, 'Times New Roman', serif; }
-a { color: var(--accent); text-decoration-thickness: .06em; text-underline-offset: .16em; }
+a { color: var(--accent); text-decoration-thickness: .06em; text-underline-offset: .08em; }
 a:hover { text-decoration: underline; }
 button, select, input { font: inherit; }
 button { cursor: pointer; border: 1px solid var(--line); background: var(--panel); border-radius: 6px; color: var(--ink); padding: .5rem .7rem; }
@@ -203,7 +203,7 @@ svg text, svg tspan { user-select: text; -webkit-user-select: text; }
 .source-page-indicator.visible { opacity: 1; transition-duration: .12s; }
 .noscript { background: var(--highlight); padding: 1rem; font: 14px system-ui, sans-serif; }
 /* Persistent prose-link cues do not add marks to positioned SVG glyphs. */
-.paper .pdf-link:not(svg a) { text-decoration-line: underline; text-decoration-thickness: .06em; text-underline-offset: .16em; text-decoration-skip-ink: auto; color: var(--accent); }
+.paper .pdf-link:not(svg a) { text-decoration-line: underline; text-decoration-thickness: .06em; text-underline-offset: .08em; text-underline-position: auto; text-decoration-skip-ink: auto; color: var(--accent); }
 .paper .pdf-link:not(svg a):is(:hover,:focus-visible) { text-decoration-thickness: .1em; }
 
 .front-matter { padding-top: var(--front-clearance, 0px); }

@@ -28,7 +28,7 @@
       document.documentElement.classList.remove('no-js');
       const landingSectionIds = ["research","publications","books","talks","software","writing","accolades","contact"];
       const publicationIds = ["cryptographic-certificates-ai","cryptoeconomics-in-space","nominal-agda-library","semiframes","declarative-distributed-semitopologies","arithmetising-logic","semitopology-jlc","declarative-distributed-three-valued","semitopology-monograph","algub","karmb","utxabs","equzfn","lanssc","cheonr","semooc","repdul","leannt","qualps","simcmt","dencmt","densmc","pnlthf","nomsbf-arxiv","nomspl","imaglm","gamsnm","finisn","uniner","metvil","stodfo","nomhss","nomtnl","twolns","stodnb","frenrs","pernl-jv","pernl","fountl","perntu-jv","perntu-tr","simcks","clonre","alogic","alwa","alwa-jv","autfms","capasn","capasn-jv","capasn-tr","curhid","curhif-jv","curstn","fmhotn","frelog","frepbm","genmn","hienr","hienr-preproceedings","lamcc","lamcce","lamcna","newcc","forcie","nomahs","nomahs-tr","nomalc","noma-nwpt","noma-tr","nomr","nomr-jv","nomrng","nomrs","nomrs-tr","nomsos-nwpt","nomu","nomuae","nomu-jv","oneaah","oneaah-jv","perntu","picfm","semnt","seqcnl","somfcg","soshop","stusun","subfmf","tersl","thesis","twollc","unialt","newaas","newaas-jv","metpbn","pritnt","obssfn-tr","pernt-tr","quarrp-ea","metbnt-ea","arboms","towpta","nomser","consistent-histories","heterogeneous-bracha-broadcast","equational-reasoning-permutation-fixed-points","money-grows-proof-trees","nomsos"];
-      const publicationAliasGroups = [["crycvt"],["deccac"],["nomtal"],["semasa"],["decdaa"],["arilps","aricps"],["semtad"],["decasp"],["semdca"],null,null,null,["equzfa"],null,null,["semocn","semcna"],["repdul-tr"],null,null,null,null,null,["pnlhol","pnlhln"],["nomsbf"],null,null,null,["finsin"],null,null,null,null,null,null,null,null,["pernlf"],["pernl-cv"],null,null,null,null,null,["log"],["loga"],["logajv"],null,null,null,null,["onehot"],["curhif","curhid-jv"],null,["fmhol","fmhhot"],["frelpt"],null,null,["hientt","hientr"],["hientt-hienr-preproceedings"],null,["lamcc-jv"],null,null,null,null,null,null,["noma"],null,["nomrs-nomr"],["nomrjv"],null,["rens"],null,null,null,["noma-jv","nomaue"],null,["onehol"],["onehol-oneaah-jv"],null,null,["semnt-ea"],null,null,["soshop-ea"],["stusnt"],["subfmf-aisb"],null,["theida"],["twoaah"],null,null,null,null,null,["obssfn"],["pernt","RR-6682"],["quarrp"],["metbnt"],null,["protap"],null,["conhel","conhel-tr"],["hettrb"],["equrlb"],["mongpt"],null];
+      const publicationAliasGroups = [["crycvt"],["deccac"],["nomtal"],["semasa"],["decdaa"],["arilps","aricps"],["semtad"],["decasp"],["semdca"],null,null,null,["equzfa"],null,null,["semocn","semcna"],["repdul-tr"],null,null,null,null,null,["pnlhol","pnlhln"],["nomsbf"],null,null,null,["finsin"],null,null,null,null,null,null,null,null,["pernlf"],["pernl-cv"],null,null,null,null,null,["log","alog"],["loga"],["logajv"],["autfms-modern"],null,null,null,["onehot"],["curhif","curhid-jv"],null,["fmhol","fmhhot"],["frelpt"],["frepbm-modern"],null,["hientt","hientr"],["hientt-hienr-preproceedings"],null,["lamcc-jv"],null,["newcc-modern"],null,null,null,null,["noma"],null,["nomrs-nomr","nomr-modern"],["nomrjv"],null,["rens"],["nomrs-tr-modern"],null,["nomu-modern"],["noma-jv","nomaue"],null,["onehol"],["onehol-oneaah-jv","onehol-jv"],null,null,["semnt-ea"],null,null,["soshop-ea"],["stusnt"],["subfmf-aisb"],null,["theida"],["twoaah"],null,null,["newaas-jv-modern"],["metpbn-modern"],null,["obssfn"],["pernt","RR-6682"],["quarrp"],["metbnt"],null,["protap"],null,["conhel","conhel-tr"],["hettrb"],["equrlb"],["mongpt"],null];
       const publicationRelatedVersionIds = [
         
           
@@ -484,8 +484,8 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
         <h2 id="research-title" tabindex="-1">Research</h2>
         <p class="section-heading__introduction">
           My work connects mathematical logic and theoretical computer science,
-          from the structure of names and binding to models of decentralised action.
-          Click on a topic to jump to papers on that topic.
+          from the structure of names and binding, to models of decentralised action, to combining cryptography with logic.
+          Click on a topic to jump to the relevant papers.
         </p>
       </div>
     </header>
@@ -534,18 +534,18 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
       <li class="research-list__item">
         <article class="research-theme" data-clickable-panel data-research-topic="cryptography">
           <p class="research-theme__symbol research-theme__symbol--zkfol" aria-hidden="true"><svg class="zkfol-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 34" aria-hidden="true" focusable="false">
-  <!-- Arithmetic and logic, following the author's two-row sketch. -->
+  <!-- Arithmetic on the first row; logic on the second. Original glyph paths are retained. -->
   <g fill="none" stroke="currentColor" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round">
     <g transform="translate(0 .5)">
       <path d="M2.5 8.7h8M6.5 4.1v9.2"></path>
-      <path d="m14.3 13.3 3.8-9.2 3.8 9.2"></path>
+      <path d="M2.5 26.3h8M4.3 22.5l4.4 7.6M4.3 30.1l4.4-7.6" transform="translate(11.6 -17.6)"></path>
       <ellipse cx="30" cy="8.7" rx="3.65" ry="4.65"></ellipse>
-      <path d="M38.1 4.1h8.2M42.2 4.1v9.2"></path>
+      <path d="M30 21.7v9.2" transform="translate(12.2 -17.6)"></path>
     </g>
     <g transform="translate(0 -.5)">
-      <path d="M2.5 26.3h8M4.3 22.5l4.4 7.6M4.3 30.1l4.4-7.6"></path>
+      <path d="m14.3 13.3 3.8-9.2 3.8 9.2" transform="translate(-11.6 17.6)"></path>
       <path d="m14.3 21.7 3.8 9.2 3.8-9.2"></path>
-      <path d="M30 21.7v9.2"></path>
+      <path d="M38.1 4.1h8.2M42.2 4.1v9.2" transform="translate(-12.2 17.6)"></path>
       <path d="M42.2 21.7v9.2M38.1 30.9h8.2"></path>
     </g>
   </g>
@@ -1265,7 +1265,7 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
           
           
             <li>
-              <a href="papers/aricps.html">
+              <a href="papers/arilps.html">
                 Experimental html<span class="sr-only"> for Arithmetising Logic: Polynomial Semantics of FOL</span></a>
             </li>
           
@@ -2365,6 +2365,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
                 Author PDF<span class="sr-only"> for A New Approach to Abstract Syntax with Variable Binding</span></a>
             </li>
           
+          
+            <li>
+              <a href="papers/newaas-jv.html">
+                Experimental html<span class="sr-only"> for A New Approach to Abstract Syntax with Variable Binding</span></a>
+            </li>
           
           
           
@@ -4166,6 +4171,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
             </li>
           
           
+            <li>
+              <a href="papers/hettrb.html">
+                Experimental html<span class="sr-only"> for Heterogeneous trust in reliable broadcast via modal logic and history structures</span></a>
+            </li>
+          
           
           
             <li>
@@ -4386,7 +4396,7 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
           
           
             <li>
-              <a href="papers/aricps.html">
+              <a href="papers/arilps.html">
                 Experimental html<span class="sr-only"> for Arithmetising Logic: Polynomial Semantics of FOL</span></a>
             </li>
           
@@ -13935,6 +13945,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
             </li>
           
           
+            <li>
+              <a href="papers/nomalc.html">
+                Experimental html<span class="sr-only"> for A nominal axiomatisation of the lambda-calculus</span></a>
+            </li>
+          
           
           
             <li>
@@ -15049,6 +15064,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
             </li>
           
           
+            <li>
+              <a href="papers/twollc.html">
+                Experimental html<span class="sr-only"> for Two-level lambda-calculus</span></a>
+            </li>
+          
           
           
             <li>
@@ -15692,6 +15712,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
             </li>
           
           
+            <li>
+              <a href="papers/nomahs.html">
+                Experimental html<span class="sr-only"> for Nominal Algebra and the HSP Theorem</span></a>
+            </li>
+          
           
           
             <li>
@@ -16125,6 +16150,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
                 Author PDF<span class="sr-only"> for A study of substitution, using nominal techniques and Fraenkel-Mostowski sets</span></a>
             </li>
           
+          
+            <li>
+              <a href="papers/stusun.html">
+                Experimental html<span class="sr-only"> for A study of substitution, using nominal techniques and Fraenkel-Mostowski sets</span></a>
+            </li>
           
           
           
@@ -16574,6 +16604,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
                 Author PDF<span class="sr-only"> for The lambda-calculus is nominal algebraic</span></a>
             </li>
           
+          
+            <li>
+              <a href="papers/lamcna.html">
+                Experimental html<span class="sr-only"> for The lambda-calculus is nominal algebraic</span></a>
+            </li>
           
           
           
@@ -17152,6 +17187,8 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
       
         <span id="onehol-oneaah-jv" data-publication-alias aria-hidden="true"></span>
       
+        <span id="onehol-jv" data-publication-alias aria-hidden="true"></span>
+      
     
     <div class="entry-marker publication__marker">
       
@@ -17229,6 +17266,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
                 Author PDF<span class="sr-only"> for One-and-a-halfth-order Logic</span></a>
             </li>
           
+          
+            <li>
+              <a href="papers/onehol-jv.html">
+                Experimental html<span class="sr-only"> for One-and-a-halfth-order Logic</span></a>
+            </li>
           
           
           
@@ -17886,6 +17928,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
                 Author PDF<span class="sr-only"> for Capture-Avoiding Substitution as a Nominal Algebra</span></a>
             </li>
           
+          
+            <li>
+              <a href="papers/capasn-jv.html">
+                Experimental html<span class="sr-only"> for Capture-Avoiding Substitution as a Nominal Algebra</span></a>
+            </li>
           
           
           
@@ -18899,6 +18946,10 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
     
   >
     
+      
+        <span id="nomrs-tr-modern" data-publication-alias aria-hidden="true"></span>
+      
+    
     <div class="entry-marker publication__marker">
       
         <span class="entry-marker__type publication__type">
@@ -18977,6 +19028,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
                 Author PDF<span class="sr-only"> for Nominal renaming sets</span></a>
             </li>
           
+          
+            <li>
+              <a href="papers/nomrs-tr.html">
+                Experimental html<span class="sr-only"> for Nominal renaming sets</span></a>
+            </li>
           
           
           
@@ -20953,6 +21009,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
             </li>
           
           
+            <li>
+              <a href="papers/capasn-tr.html">
+                Experimental html<span class="sr-only"> for Capture-Avoiding Substitution as a Nominal Algebra</span></a>
+            </li>
+          
           
           
             <li>
@@ -22630,6 +22691,8 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
       
         <span id="log" data-publication-alias aria-hidden="true"></span>
       
+        <span id="alog" data-publication-alias aria-hidden="true"></span>
+      
     
     <div class="entry-marker publication__marker">
       
@@ -22715,6 +22778,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
                 Author PDF<span class="sr-only"> for a-logic</span></a>
             </li>
           
+          
+            <li>
+              <a href="papers/alogic.html">
+                Experimental html<span class="sr-only"> for a-logic</span></a>
+            </li>
           
           
           
@@ -23077,6 +23145,10 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
     
   >
     
+      
+        <span id="newcc-modern" data-publication-alias aria-hidden="true"></span>
+      
+    
     <div class="entry-marker publication__marker">
       
         <span class="entry-marker__type publication__type">
@@ -23157,6 +23229,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
                 Author PDF<span class="sr-only"> for A NEW calculus of contexts</span></a>
             </li>
           
+          
+            <li>
+              <a href="papers/newcc.html">
+                Experimental html<span class="sr-only"> for A NEW calculus of contexts</span></a>
+            </li>
           
           
           
@@ -23739,6 +23816,8 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
       
         <span id="nomrs-nomr" data-publication-alias aria-hidden="true"></span>
       
+        <span id="nomr-modern" data-publication-alias aria-hidden="true"></span>
+      
     
     <div class="entry-marker publication__marker">
       
@@ -23816,6 +23895,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
                 Author PDF<span class="sr-only"> for Nominal Rewriting Systems</span></a>
             </li>
           
+          
+            <li>
+              <a href="papers/nomr.html">
+                Experimental html<span class="sr-only"> for Nominal Rewriting Systems</span></a>
+            </li>
           
           
           
@@ -24171,6 +24255,10 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
     
   >
     
+      
+        <span id="nomu-modern" data-publication-alias aria-hidden="true"></span>
+      
+    
     <div class="entry-marker publication__marker">
       
         <span class="entry-marker__type publication__type">
@@ -24253,6 +24341,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
                 Author PDF<span class="sr-only"> for Nominal Unification</span></a>
             </li>
           
+          
+            <li>
+              <a href="papers/nomu.html">
+                Experimental html<span class="sr-only"> for Nominal Unification</span></a>
+            </li>
           
           
           
@@ -24621,6 +24714,10 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
     
   >
     
+      
+        <span id="frepbm-modern" data-publication-alias aria-hidden="true"></span>
+      
+    
     <div class="entry-marker publication__marker">
       
         <span class="entry-marker__type publication__type">
@@ -24701,6 +24798,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
                 Author PDF<span class="sr-only"> for FreshML: Programming with Binders Made Simple</span></a>
             </li>
           
+          
+            <li>
+              <a href="papers/frepbm.html">
+                Experimental html<span class="sr-only"> for FreshML: Programming with Binders Made Simple</span></a>
+            </li>
           
           
           
@@ -24845,6 +24947,10 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
     
   >
     
+      
+        <span id="autfms-modern" data-publication-alias aria-hidden="true"></span>
+      
+    
     <div class="entry-marker publication__marker">
       
         <span class="entry-marker__type publication__type">
@@ -24924,6 +25030,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
                 Author PDF<span class="sr-only"> for Automating Fraenkel-Mostowski Syntax</span></a>
             </li>
           
+          
+            <li>
+              <a href="papers/autfms.html">
+                Experimental html<span class="sr-only"> for Automating Fraenkel-Mostowski Syntax</span></a>
+            </li>
           
           
           
@@ -25059,6 +25170,10 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
     
   >
     
+      
+        <span id="newaas-jv-modern" data-publication-alias aria-hidden="true"></span>
+      
+    
     <div class="entry-marker publication__marker">
       
         <span class="entry-marker__type publication__type">
@@ -25135,6 +25250,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
                 Author PDF<span class="sr-only"> for A New Approach to Abstract Syntax with Variable Binding</span></a>
             </li>
           
+          
+            <li>
+              <a href="papers/newaas-jv.html">
+                Experimental html<span class="sr-only"> for A New Approach to Abstract Syntax with Variable Binding</span></a>
+            </li>
           
           
           
@@ -25923,6 +26043,10 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
     
   >
     
+      
+        <span id="metpbn-modern" data-publication-alias aria-hidden="true"></span>
+      
+    
     <div class="entry-marker publication__marker">
       
         <span class="entry-marker__type publication__type">
@@ -26000,6 +26124,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
                 Author PDF<span class="sr-only"> for A Metalanguage for Programming with Bound Names Modulo Renaming</span></a>
             </li>
           
+          
+            <li>
+              <a href="papers/metpbn.html">
+                Experimental html<span class="sr-only"> for A Metalanguage for Programming with Bound Names Modulo Renaming</span></a>
+            </li>
           
           
           
@@ -26465,7 +26594,7 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
           
           
             <li>
-              <a href="papers/aricps.html">
+              <a href="papers/arilps.html">
                 Experimental html<span class="sr-only"> for Arithmetising Logic: Polynomial Semantics of FOL</span></a>
             </li>
           
@@ -27548,6 +27677,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
                 Author PDF<span class="sr-only"> for Heterogeneous trust in reliable broadcast via modal logic and history structures</span></a>
             </li>
           
+          
+            <li>
+              <a href="papers/hettrb.html">
+                Experimental html<span class="sr-only"> for Heterogeneous trust in reliable broadcast via modal logic and history structures</span></a>
+            </li>
           
           
           
@@ -29712,6 +29846,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
             </li>
           
           
+            <li>
+              <a href="papers/hettrb.html">
+                Experimental html<span class="sr-only"> for Heterogeneous trust in reliable broadcast via modal logic and history structures</span></a>
+            </li>
+          
           
           
             <li>
@@ -31434,6 +31573,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
             </li>
           
           
+            <li>
+              <a href="papers/nomalc.html">
+                Experimental html<span class="sr-only"> for A nominal axiomatisation of the lambda-calculus</span></a>
+            </li>
+          
           
           
             <li>
@@ -32082,6 +32226,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
             </li>
           
           
+            <li>
+              <a href="papers/twollc.html">
+                Experimental html<span class="sr-only"> for Two-level lambda-calculus</span></a>
+            </li>
+          
           
           
             <li>
@@ -32513,6 +32662,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
                 Author PDF<span class="sr-only"> for The lambda-calculus is nominal algebraic</span></a>
             </li>
           
+          
+            <li>
+              <a href="papers/lamcna.html">
+                Experimental html<span class="sr-only"> for The lambda-calculus is nominal algebraic</span></a>
+            </li>
           
           
           
@@ -33171,6 +33325,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
             </li>
           
           
+            <li>
+              <a href="papers/newcc.html">
+                Experimental html<span class="sr-only"> for A NEW calculus of contexts</span></a>
+            </li>
+          
           
           
             <li>
@@ -33796,7 +33955,7 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
           
           
             <li>
-              <a href="papers/aricps.html">
+              <a href="papers/arilps.html">
                 Experimental html<span class="sr-only"> for Arithmetising Logic: Polynomial Semantics of FOL</span></a>
             </li>
           
@@ -37235,6 +37394,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
             </li>
           
           
+            <li>
+              <a href="papers/nomahs.html">
+                Experimental html<span class="sr-only"> for Nominal Algebra and the HSP Theorem</span></a>
+            </li>
+          
           
           
             <li>
@@ -37443,6 +37607,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
                 Author PDF<span class="sr-only"> for One-and-a-halfth-order Logic</span></a>
             </li>
           
+          
+            <li>
+              <a href="papers/onehol-jv.html">
+                Experimental html<span class="sr-only"> for One-and-a-halfth-order Logic</span></a>
+            </li>
           
           
           
@@ -40042,6 +40211,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
                 Author PDF<span class="sr-only"> for a-logic</span></a>
             </li>
           
+          
+            <li>
+              <a href="papers/alogic.html">
+                Experimental html<span class="sr-only"> for a-logic</span></a>
+            </li>
           
           
           
@@ -43069,6 +43243,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
             </li>
           
           
+            <li>
+              <a href="papers/nomrs-tr.html">
+                Experimental html<span class="sr-only"> for Nominal renaming sets</span></a>
+            </li>
+          
           
           
           
@@ -43947,6 +44126,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
             </li>
           
           
+            <li>
+              <a href="papers/newcc.html">
+                Experimental html<span class="sr-only"> for A NEW calculus of contexts</span></a>
+            </li>
+          
           
           
             <li>
@@ -44161,6 +44345,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
             </li>
           
           
+            <li>
+              <a href="papers/autfms.html">
+                Experimental html<span class="sr-only"> for Automating Fraenkel-Mostowski Syntax</span></a>
+            </li>
+          
           
           
             <li>
@@ -44371,6 +44560,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
                 Author PDF<span class="sr-only"> for A New Approach to Abstract Syntax with Variable Binding</span></a>
             </li>
           
+          
+            <li>
+              <a href="papers/newaas-jv.html">
+                Experimental html<span class="sr-only"> for A New Approach to Abstract Syntax with Variable Binding</span></a>
+            </li>
           
           
           
@@ -46763,6 +46957,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
             </li>
           
           
+            <li>
+              <a href="papers/frepbm.html">
+                Experimental html<span class="sr-only"> for FreshML: Programming with Binders Made Simple</span></a>
+            </li>
+          
           
           
             <li>
@@ -46973,6 +47172,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
                 Author PDF<span class="sr-only"> for A Metalanguage for Programming with Bound Names Modulo Renaming</span></a>
             </li>
           
+          
+            <li>
+              <a href="papers/metpbn.html">
+                Experimental html<span class="sr-only"> for A Metalanguage for Programming with Bound Names Modulo Renaming</span></a>
+            </li>
           
           
           
@@ -48949,6 +49153,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
             </li>
           
           
+            <li>
+              <a href="papers/stusun.html">
+                Experimental html<span class="sr-only"> for A study of substitution, using nominal techniques and Fraenkel-Mostowski sets</span></a>
+            </li>
+          
           
           
             <li>
@@ -49599,6 +49808,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
                 Author PDF<span class="sr-only"> for Capture-Avoiding Substitution as a Nominal Algebra</span></a>
             </li>
           
+          
+            <li>
+              <a href="papers/capasn-jv.html">
+                Experimental html<span class="sr-only"> for Capture-Avoiding Substitution as a Nominal Algebra</span></a>
+            </li>
           
           
           
@@ -50474,6 +50688,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
                 Author PDF<span class="sr-only"> for Capture-Avoiding Substitution as a Nominal Algebra</span></a>
             </li>
           
+          
+            <li>
+              <a href="papers/capasn-tr.html">
+                Experimental html<span class="sr-only"> for Capture-Avoiding Substitution as a Nominal Algebra</span></a>
+            </li>
           
           
           
@@ -51536,6 +51755,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
             </li>
           
           
+            <li>
+              <a href="papers/nomr.html">
+                Experimental html<span class="sr-only"> for Nominal Rewriting Systems</span></a>
+            </li>
+          
           
           
             <li>
@@ -51749,6 +51973,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
                 Author PDF<span class="sr-only"> for Nominal Unification</span></a>
             </li>
           
+          
+            <li>
+              <a href="papers/nomu.html">
+                Experimental html<span class="sr-only"> for Nominal Unification</span></a>
+            </li>
           
           
           
@@ -52619,7 +52848,7 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
           
           
             <li>
-              <a href="papers/aricps.html">
+              <a href="papers/arilps.html">
                 Experimental html<span class="sr-only"> for Arithmetising Logic: Polynomial Semantics of FOL</span></a>
             </li>
           
@@ -56343,6 +56572,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
             </li>
           
           
+            <li>
+              <a href="papers/stusun.html">
+                Experimental html<span class="sr-only"> for A study of substitution, using nominal techniques and Fraenkel-Mostowski sets</span></a>
+            </li>
+          
           
           
             <li>
@@ -56991,6 +57225,11 @@ I have a <a href="#food-intolerance">wheat intolerance</a>.</p>
                 Author PDF<span class="sr-only"> for Nominal renaming sets</span></a>
             </li>
           
+          
+            <li>
+              <a href="papers/nomrs-tr.html">
+                Experimental html<span class="sr-only"> for Nominal renaming sets</span></a>
+            </li>
           
           
           
@@ -119656,18 +119895,18 @@ Sorry that I put the camera on the projector so it picked up the noise from the 
         <span class="software-item__marker software-item__marker--zkfol">
           
 <svg class="zkfol-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 34" aria-hidden="true" focusable="false">
-  <!-- Arithmetic and logic, following the author's two-row sketch. -->
+  <!-- Arithmetic on the first row; logic on the second. Original glyph paths are retained. -->
   <g fill="none" stroke="currentColor" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round">
     <g transform="translate(0 .5)">
       <path d="M2.5 8.7h8M6.5 4.1v9.2"></path>
-      <path d="m14.3 13.3 3.8-9.2 3.8 9.2"></path>
+      <path d="M2.5 26.3h8M4.3 22.5l4.4 7.6M4.3 30.1l4.4-7.6" transform="translate(11.6 -17.6)"></path>
       <ellipse cx="30" cy="8.7" rx="3.65" ry="4.65"></ellipse>
-      <path d="M38.1 4.1h8.2M42.2 4.1v9.2"></path>
+      <path d="M30 21.7v9.2" transform="translate(12.2 -17.6)"></path>
     </g>
     <g transform="translate(0 -.5)">
-      <path d="M2.5 26.3h8M4.3 22.5l4.4 7.6M4.3 30.1l4.4-7.6"></path>
+      <path d="m14.3 13.3 3.8-9.2 3.8 9.2" transform="translate(-11.6 17.6)"></path>
       <path d="m14.3 21.7 3.8 9.2 3.8-9.2"></path>
-      <path d="M30 21.7v9.2"></path>
+      <path d="M38.1 4.1h8.2M42.2 4.1v9.2" transform="translate(-12.2 17.6)"></path>
       <path d="M42.2 21.7v9.2M38.1 30.9h8.2"></path>
     </g>
   </g>
